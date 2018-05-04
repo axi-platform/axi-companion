@@ -34,6 +34,10 @@ export default {
       path: '/',
       component: 'src/routes/Landing',
     },
+    {
+      is404: true,
+      component: 'src/routes/404',
+    },
   ],
   renderToHtml: (render, Comp, meta) => {
     const html = render(<Comp />)

@@ -6,4 +6,6 @@ if (typeof window !== 'undefined') {
   history = createHistory()
 }
 
+window._history = history
+
 export default history
