@@ -1,46 +1,73 @@
+import * as R from 'ramda'
 import {action, observable} from 'mobx'
 import Realtime from 'feathers-offline-realtime'
 
 import app from '../core/feathers'
 
-class FeathersStore {
-  @observable name = 'Phoom'
+async function handleEvents(rootStore, app, service) {
+  const Service = app.service(service)
+  const store = rootStore[service]
 
+  Service.on('created', data => {
+    store.data = [...store.data, data]
+
+    console.info(`${service} created:`, data)
+  })
+
+  Service.on('updated', data => {
+    const index = store.data.findIndex(x => x.id === data.id)
+    store.data = R.update(index, data, store.data)
+
+    console.info(`${service} updated:`, data)
+  })
+
+  Service.on('patched', data => {
+    const index = store.data.findIndex(x => x.id === data.id)
+    store.data = R.update(index, data, store.data)
+
+    console.info(`${service} patched:`, data)
+  })
+
+  Service.on('removed', data => {
+    store.data = store.data.filter(x => x.id !== data.id)
+
+    console.info(`${service} removed:`, data)
+  })
+}
+
+class FeathersStore {
   @action
   use = async service => {
-    console.log('Using Service:', service)
-
     if (!this[service]) {
-      this.setup(service)
+      this[service] = observable({data: [], loading: true, error: null})
+      handleEvents(this, app, service)
 
-      console.log('Registered Service:', service)
+      console.log(`[>] Service Registered: ${service}`)
     }
   }
 
   @action
-  setup = async service => {
-    this[service] = observable({data: []})
+  find = async (service, query = {}) => {
+    const store = this[service]
+    store.loading = true
+
+    const result = await app.service(service).find({query})
+    const {data, skip, total, limit} = result
+
+    store.data = data
+    store.skip = skip
+    store.total = total
+    store.limit = limit
+
+    store.loading = false
+  }
+
+  @action
+  off = (service, customEvents) => {
     const Service = app.service(service)
+    const events = ['created', 'updated', 'patched', 'removed', ...customEvents]
 
-    Service.on('created', data => {
-      console.log(`Service ${service} created:`, data)
-    })
-
-    Service.on('updated', data => {
-      console.log(`Service ${service} updated:`, data)
-    })
-
-    Service.on('patched', data => {
-      console.log(`Service ${service} patched:`, data)
-    })
-
-    Service.on('removed', data => {
-      console.log(`Service ${service} removed:`, data)
-    })
-
-    Service.find().then(data => {
-      this[service].data = data
-    })
+    events.forEach(event => Service.off(event))
   }
 }
 

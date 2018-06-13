@@ -19,19 +19,6 @@ const Container = styled.div`
   font-weight: 300;
 `
 
-// const query = gql`
-//   {
-//     projects {
-//       id
-//       name
-//       displayName
-//       description
-//       color
-//       icon
-//     }
-//   }
-// `
-
 const Dashboard = () => (
   <div>
     <Toolbar title="Dashboard" />

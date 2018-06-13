@@ -8,6 +8,11 @@ export default class Query extends Component {
     super(props)
 
     feathers.use(props.service)
+    feathers.find(props.service, props.query)
+  }
+
+  componentWillUnmount() {
+    feathers.off(this.props.service)
   }
 
   render() {

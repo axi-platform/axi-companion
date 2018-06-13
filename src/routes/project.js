@@ -27,13 +27,18 @@ const Tab = ({is, children}) => (
   </Page>
 )
 
-const Project = () => (
-  <div>
-    <ProjectToolbar name="pmcxx" />
-    <Tab is={0}>
-      <h1>Hello, World!</h1>
-    </Tab>
-  </div>
-)
+const Project = props => {
+  // prettier-ignore
+  const {match: {params: {id}}} = props
+
+  return (
+    <div>
+      <ProjectToolbar name={id} />
+      <Tab is={0}>
+        <h1>Hello, World!</h1>
+      </Tab>
+    </div>
+  )
+}
 
 export default Project
