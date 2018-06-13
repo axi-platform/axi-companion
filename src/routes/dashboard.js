@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'react-emotion'
+import {Query} from 'react-apollo'
+import gql from 'graphql-tag'
 
 import Toolbar from '../components/Toolbar'
 import Directory from '../components/Directory'
@@ -54,12 +56,42 @@ const services = [
   },
 ]
 
+const query = gql`
+  {
+    tickets {
+      id
+      buyer
+      seat
+    }
+  }
+`
+
 const Dashboard = () => (
   <div>
     <Toolbar title="Dashboard" />
     <Container>
       <Directory services={services} />
     </Container>
+    <div>
+      <Query query={query}>
+        {({loading, error, data}) => {
+          if (loading) return <p>Loading...</p>
+          if (error) return <p>Error :(</p>
+
+          return (
+            <div>
+              {data.tickets.map(ticket => (
+                <div key={ticket.id}>
+                  <div>ID: {ticket.id}</div>
+                  <div>Buyer: {ticket.buyer}</div>
+                  <div>Seat: {ticket.seat}</div>
+                </div>
+              ))}
+            </div>
+          )
+        }}
+      </Query>
+    </div>
   </div>
 )
 

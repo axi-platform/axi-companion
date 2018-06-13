@@ -10,20 +10,16 @@ import Icon from '../Icon'
 
 import toColor from '../../core/color'
 
-const MaybeLink = props => (props.to ? <Link {...props} /> : props.children)
-
 export const ServiceCard = ({id, to, color, name, desc, icon}) => (
-  <MaybeLink to={to}>
-    <Card color={color || toColor(id)}>
-      <Content>
-        <Ink />
-        {name}
-        {desc && <Small>{desc}</Small>}
-        {icon && <img src={icon} alt="" />}
-      </Content>
-      <Meta>{id}</Meta>
-    </Card>
-  </MaybeLink>
+  <Card color={color || toColor(id)} to={to}>
+    <Content>
+      <Ink />
+      {name}
+      {desc && <Small>{desc}</Small>}
+      {icon && <img src={icon} alt="" />}
+    </Content>
+    <Meta>{id}</Meta>
+  </Card>
 )
 
 export const Add = ({onClick}) => (

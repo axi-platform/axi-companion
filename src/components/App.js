@@ -3,15 +3,20 @@ import {hot} from 'react-hot-loader'
 import {Provider} from 'mobx-react'
 import {compose, lifecycle} from 'recompose'
 import {injectGlobal} from 'react-emotion'
+import {ApolloProvider} from 'react-apollo'
+
+import client from '../core/apollo'
 
 import Routes from './Routes'
 
 import stores from '../stores'
 
 const App = () => (
-  <Provider {...stores}>
-    <Routes />
-  </Provider>
+  <ApolloProvider client={client}>
+    <Provider {...stores}>
+      <Routes />
+    </Provider>
+  </ApolloProvider>
 )
 
 const enhance = compose(
