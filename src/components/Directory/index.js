@@ -10,10 +10,10 @@ import Icon from '../Icon'
 
 import toColor from '../../core/color'
 
-const MaybeLink = props => (props.href ? <Link {...props} /> : props.children)
+const MaybeLink = props => (props.to ? <Link {...props} /> : props.children)
 
-export const ServiceCard = ({id, href, color, name, desc, icon}) => (
-  <MaybeLink href={href} passHref prefetch>
+export const ServiceCard = ({id, to, color, name, desc, icon}) => (
+  <MaybeLink to={to}>
     <Card color={color || toColor(id)}>
       <Content>
         <Ink />
@@ -40,7 +40,7 @@ const Directory = ({open, services = [], toggleOpen}) => (
   <Grid>
     {services.map(item => (
       <Row key={item.id}>
-        <ServiceCard href={`/service?id=${item.id}`} {...item} />
+        <ServiceCard to={`/service?id=${item.id}`} {...item} />
       </Row>
     ))}
     <Row>

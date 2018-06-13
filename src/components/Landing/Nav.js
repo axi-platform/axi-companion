@@ -57,7 +57,7 @@ const Right = styled.div`
   }
 `
 
-const Menu = styled.a`
+const Menu = styled(Link)`
   flex: 1;
   align-self: center;
 
@@ -96,7 +96,7 @@ const Logo = styled.img`
   }
 `
 
-const TryButton = styled.button`
+const TryButton = styled(Link)`
   text-transform: uppercase;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   border: 0;
@@ -106,13 +106,11 @@ const TryButton = styled.button`
   appearance: none;
   color: #efefef;
   cursor: pointer;
-  font-family: ${font};
-  height: 3em;
-  letter-spacing: 0.15em;
   margin-left: 1em;
   outline: none;
   padding: 0.5em 0.8em;
   position: relative;
+  text-decoration: none;
 
   &:hover {
     background: ${lighten(0.1, landingColor)};
@@ -131,7 +129,7 @@ const Inline = styled.div`
   }
 `
 
-const LogoAnchor = styled.a`
+const LogoAnchor = styled(Link)`
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   text-decoration: none;
   cursor: pointer;
@@ -146,28 +144,24 @@ const LogoAnchor = styled.a`
 const Nav = () => (
   <NavBar color="#ffffff">
     <Left>
-      <Link href="/" passHref>
-        <LogoAnchor>
-          <Logo src={logo} alt="Logo" />
-        </LogoAnchor>
-      </Link>
+      <LogoAnchor to="/">
+        <Logo src={logo} alt="Logo" />
+      </LogoAnchor>
       <Inline>
-        <Menu href="#!">Overview</Menu>
-        <Menu href="#!">Examples</Menu>
-        <Menu href="#!">FAQ</Menu>
-        <Menu href="#!">Contact</Menu>
+        <Menu to="#!">Overview</Menu>
+        <Menu to="#!">Examples</Menu>
+        <Menu to="#!">FAQ</Menu>
+        <Menu to="#!">Contact</Menu>
       </Inline>
     </Left>
     <Center />
     <Right>
       <Inline>
-        <Menu href="#!">Sign In</Menu>
-        <Link href="/dashboard" passHref prefetch>
-          <TryButton light>
-            Try Now
-            <Ink />
-          </TryButton>
-        </Link>
+        <Menu to="#!">Sign In</Menu>
+        <TryButton to="/dashboard" light>
+          Try Now
+          <Ink />
+        </TryButton>
       </Inline>
     </Right>
   </NavBar>

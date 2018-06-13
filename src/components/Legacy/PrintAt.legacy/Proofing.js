@@ -90,7 +90,7 @@ const Proofing = ({file, remove, on, current = 0, onUploaded, onProg}) => {
             &nbsp;- {getFileInfo(file.name, file.type)}
           </h3>
           <div>
-            <a href={file.path} target="_blank" rel="noopener noreferrer">
+            <a to={file.path} target="_blank" rel="noopener noreferrer">
               <Button base light>
                 Download File
               </Button>

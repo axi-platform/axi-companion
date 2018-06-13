@@ -17,7 +17,7 @@ class Document extends Component {
           <style dangerouslySetInnerHTML={{__html: renderMeta.css}} />
 
           <link
-            href="https://fonts.googleapis.com/css?family=Kanit:300,400"
+            to="https://fonts.googleapis.com/css?family=Kanit:300,400"
             rel="stylesheet"
           />
         </Head>

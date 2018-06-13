@@ -18,7 +18,7 @@ const Text = styled.div`
   color: #333;
 `
 
-const AnchorWrapper = styled.a`
+const Anchor = styled(Link)`
   display: flex;
   justify-content: center;
   margin-top: 1em;
@@ -28,17 +28,11 @@ const AnchorWrapper = styled.a`
   color: #8e44ad;
 `
 
-const Anchor = ({href, children}) => (
-  <Link prefetch href={href} passHref>
-    <AnchorWrapper>{children}</AnchorWrapper>
-  </Link>
-)
-
 export default () => (
   <View>
     <Text>
       Axi Platform is coming to town!
-      <Anchor href="/dashboard">Explore.</Anchor>
+      <Anchor to="/dashboard">Explore.</Anchor>
     </Text>
   </View>
 )

@@ -1,13 +1,13 @@
-import React from "react"
-import withStyles from "isomorphic-style-loader/lib/withStyles"
+import React from 'react'
+import withStyles from 'isomorphic-style-loader/lib/withStyles'
 
-import Icon from "../../components/Icon"
-import Button from "../../components/Button"
-import Grid from "../../components/Grid"
+import Icon from '../../components/Icon'
+import Button from '../../components/Button'
+import Grid from '../../components/Grid'
 
-import s from "./Coffe.scss"
+import s from './Coffe.scss'
 
-const font = "https://fonts.googleapis.com/css?family=Quicksand:400,500,600"
+const font = 'https://fonts.googleapis.com/css?family=Quicksand:400,500,600'
 
 const Coffe = () => (
   <div>
@@ -21,13 +21,10 @@ const Coffe = () => (
       <img src="/static/coffee1.svg" role="presentation" />
       <h2>Cappucino</h2>
       <h3>
-        Dark, rich espresso lies in wait under a smoothed and
-        stretched layer of thick foam. It's truly the height of
-        our baristas' craft.
+        Dark, rich espresso lies in wait under a smoothed and stretched layer of
+        thick foam. It's truly the height of our baristas' craft.
       </h3>
-      <p className={s.price}>
-        160 THB
-      </p>
+      <p className={s.price}>160 THB</p>
       <Grid className={s.details} r>
         <Grid xs={4}>
           <div className={s.detail}>
@@ -57,9 +54,7 @@ const Coffe = () => (
         <span>Add a Muffin only for 100 THB extra</span>
       </div>
       <div className={s.order}>
-        <Button light>
-          Order Now
-        </Button>
+        <Button light>Order Now</Button>
       </div>
     </main>
   </div>

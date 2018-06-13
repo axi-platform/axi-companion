@@ -16,9 +16,7 @@ export const Row = styled.div`
   }
 `
 
-export const Col = styled.div`
-
-`
+export const Col = styled.div``
 
 const Heading = styled.h2`
   margin: 0;
@@ -27,7 +25,7 @@ const Heading = styled.h2`
 `
 
 // ds => width: initial; margin-top: 1em;
-export const IdeaSection = styled.section`
+export const IdeaSection = styled(Link)`
   max-width: ${containerWidth};
   margin: 0 auto;
   text-align: center;
@@ -41,18 +39,12 @@ export const IdeaHeading = styled.h2`
   font-weight: 300;
 `
 
-const MaybeLink = props => props.link ? <Link {...props} /> : (
-  <div>{props.children}</div>
-)
-
 const Idea = ({t, to = '#!', img = defaultImage}) => (
   <Row>
-    <MaybeLink href={to}>
-      <IdeaSection>
-        <IdeaHeading>{t}</IdeaHeading>
-        <DecoImage sWidth={16} src={img} />
-      </IdeaSection>
-    </MaybeLink>
+    <IdeaSection to={to}>
+      <IdeaHeading>{t}</IdeaHeading>
+      <DecoImage sWidth={16} src={img} />
+    </IdeaSection>
   </Row>
 )
 
@@ -68,10 +60,6 @@ const Idea = ({t, to = '#!', img = defaultImage}) => (
 //   <Idea t='Coffe Instante' img='/static/coffee1.svg' to='/coffe' />
 // </Row>
 
-const Ideas = () => (
-  <IdeaSection>
-    
-  </IdeaSection>
-)
+const Ideas = () => <IdeaSection />
 
 export default Ideas

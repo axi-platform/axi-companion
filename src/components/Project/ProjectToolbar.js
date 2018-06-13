@@ -69,7 +69,7 @@ const ProjectToolbar = ({name, color, tab}) => (
       color={color || colorize(name)}
       left={
         <Left>
-          <IconLink href="/dashboard" icon="dashboard" />
+          <IconLink to="/dashboard" icon="dashboard" />
           <Separator />
           <Title min={6}>{name}</Title>
         </Left>
@@ -80,8 +80,8 @@ const ProjectToolbar = ({name, color, tab}) => (
             <Tabs tabs={tabs} tab={tab} />
           </Desktop>
           <Separator />
-          <IconLink href="/dashboard" icon="notifications" />
-          <IconLink href="/dashboard" icon="settings" />
+          <IconLink to="/dashboard" icon="notifications" />
+          <IconLink to="/dashboard" icon="settings" />
         </Right>
       }
     />

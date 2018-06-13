@@ -1,4 +1,5 @@
 import styled from 'react-emotion'
+import {Link} from 'react-static'
 
 export const Grid = styled.div`
   display: flex;
@@ -26,7 +27,7 @@ export const Row = styled.div`
   justify-content: center;
 `
 
-export const Card = styled.a`
+export const Card = styled(Link)`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -56,7 +57,7 @@ export const Adder = styled.div`
   cursor: pointer;
   padding: 0.5em;
   border-radius: 50%;
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   opacity: 0.75;
   transition: 1s cubic-bezier(0.22, 0.61, 0.36, 1) all;
   position: relative;
@@ -97,7 +98,7 @@ export const Content = styled.div`
 export const Meta = styled.div`
   display: flex;
   font-weight: 300;
-  padding: .75em 1.5em;
+  padding: 0.75em 1.5em;
   background: rgba(0, 0, 0, 0.2);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;

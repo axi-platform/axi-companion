@@ -13,11 +13,11 @@ const JoinSection = styled.section`
   padding-bottom: 3em;
 `
 
-const JoinButton = styled.a`
+const JoinButton = styled(Link)`
   font-family: ${font};
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   height: 3em;
-  box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   align-self: center;
   border-radius: 3px;
   background: linear-gradient(45deg, hsl(283, 46%, 41%), hsl(241, 100%, 82%));
@@ -38,19 +38,18 @@ const JoinButton = styled.a`
 
   &:hover {
     background: linear-gradient(45deg, #3a3897, #a3a1ff);
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
+      0 2px 10px 0 rgba(0, 0, 0, 0.12);
     transform: translateY(-1px);
   }
 `
 
 const Join = () => (
   <JoinSection>
-    <Link href='/dashboard' passHref>
-      <JoinButton>
-        Sign Up
-        <Ink />
-      </JoinButton>
-    </Link>
+    <JoinButton to="/dashboard">
+      Sign Up
+      <Ink />
+    </JoinButton>
   </JoinSection>
 )
 

@@ -14,7 +14,7 @@ export const Page = styled.div`
   font-weight: 300;
 `
 
-export const Anchor = styled.a`
+export const Anchor = styled(Link)`
   display: flex;
   align-items: center;
 
@@ -25,6 +25,7 @@ export const MoreText = styled.span`
   align-self: center;
   margin-right: 0.6em;
   transition: all 1s cubic-bezier(0.03, 0.86, 0.57, 1);
+  text-decoration: none;
 
   color: ${props => props.color};
   font-weight: 400;
@@ -41,7 +42,7 @@ export const MoreText = styled.span`
 export const DecoImage = styled.img`
   align-self: center;
   width: ${props => props.width || 50}%;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.30));
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
 
   @media screen and (max-width: ${smallScreen}px) {
     width: ${props => props.sWidth || props.width || 50}%;
@@ -63,10 +64,8 @@ export const BreakMedium = styled.br`
 `
 
 export const More = ({color = landingColor, text, link = '/'}) => (
-  <Link href={link} passHref>
-    <Anchor>
-      <MoreText color={color}>{text}</MoreText>
-      <Icon i='play' size={1.5} fill={color} />
-    </Anchor>
-  </Link>
+  <Anchor to={link}>
+    <MoreText color={color}>{text}</MoreText>
+    <Icon i="play" size={1.5} fill={color} />
+  </Anchor>
 )

@@ -18,25 +18,22 @@ const makeIconWrapper = tag => styled(tag)`
 
   transition: 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) all;
   opacity: ${props => props.opacity || 0.85};
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.30));
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
 
   &:hover {
     transform: scale(1.2);
     opacity: 1;
     filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
   }
-
 `
 
 const IconLinkAnchor = makeIconWrapper('a')
 const IconButtonWrapper = makeIconWrapper('div')
 
-export const IconLink = ({icon, href, prefetch, size, opacity}) => (
-  <Link href={href} passHref prefetch={prefetch}>
-    <IconLinkAnchor size={size} opacity={opacity}>
-      <Icon i={icon} />
-    </IconLinkAnchor>
-  </Link>
+export const IconLink = ({icon, to, prefetch, size, opacity}) => (
+  <IconLinkAnchor size={size} opacity={opacity} to={to}>
+    <Icon i={icon} />
+  </IconLinkAnchor>
 )
 
 export const IconButton = ({icon, size = 1.5, opacity}) => (
