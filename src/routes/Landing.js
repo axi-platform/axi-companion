@@ -1,26 +1,17 @@
 import React from 'react'
-import {inject, observer} from 'mobx-react'
-import styled from 'react-emotion'
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+import {Page, Nav, Fold, Why, Ideas, Join} from '../components/Landing'
 
-  min-height: 100vh;
-`
-
-const Heading = styled.h1`
-  color: #666;
-  font-weight: 300;
-`
-
-const Landing = ({app}) => (
-  <Container>
-    <Heading>Message: {app.message}</Heading>
-    <button onClick={app.fetchMessage}>Fetch Message...</button>
-  </Container>
+const Landing = () => (
+  <Page>
+    <Nav />
+    <main>
+      <Fold />
+      <Why />
+      <Ideas />
+      <Join />
+    </main>
+  </Page>
 )
 
-export default inject('app')(observer(Landing))
+export default Landing

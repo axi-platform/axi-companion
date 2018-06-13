@@ -32,7 +32,15 @@ export default {
   getRoutes: async () => [
     {
       path: '/',
-      component: 'src/routes/Landing',
+      component: 'src/routes/landing',
+    },
+    {
+      path: '/dashboard',
+      component: 'src/routes/dashboard',
+    },
+    {
+      path: '/printat',
+      component: 'src/routes/printat',
     },
     {
       is404: true,
