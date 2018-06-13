@@ -1,3 +1,4 @@
 import app from './app'
+import feathers from './feathers'
 
-export default {app}
+export default {app, feathers}

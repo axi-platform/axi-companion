@@ -27,7 +27,7 @@ const makeIconWrapper = tag => styled(tag)`
   }
 `
 
-const IconLinkAnchor = makeIconWrapper('a')
+const IconLinkAnchor = makeIconWrapper(Link)
 const IconButtonWrapper = makeIconWrapper('div')
 
 export const IconLink = ({icon, to, prefetch, size, opacity}) => (

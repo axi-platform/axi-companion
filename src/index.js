@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import app from './core/feathers'
+
 import App from './components/App'
 
 if (typeof document !== 'undefined') {
@@ -14,6 +16,10 @@ if (typeof document !== 'undefined') {
 
   // Render!
   render(App)
+}
+
+if (typeof window !== 'undefined') {
+  window.app = app
 }
 
 export default App

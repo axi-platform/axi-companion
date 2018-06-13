@@ -1,6 +1,5 @@
 import React from 'react'
 import Ink from 'react-ink'
-import {Link} from 'react-static'
 
 import {Grid, Row, Card, Content, Meta, Adder, AdderRing, Small} from './Card'
 import Create from './Create'
@@ -10,15 +9,17 @@ import Icon from '../Icon'
 
 import toColor from '../../core/color'
 
-export const ServiceCard = ({id, to, color, name, desc, icon}) => (
-  <Card color={color || toColor(id)} to={to}>
+export const ServiceCard = data => (
+  <Card color={data.color || toColor(data.name)} to={data.to}>
     <Content>
       <Ink />
-      {name}
-      {desc && <Small>{desc}</Small>}
-      {icon && <img src={icon} alt="" />}
+      {data.displayName}
+      <Small>{data.description}</Small>
+      {data.icon && (
+        <img src={require(`../../assets/${data.icon}.png`)} alt="" />
+      )}
     </Content>
-    <Meta>{id}</Meta>
+    <Meta>{data.name}</Meta>
   </Card>
 )
 
@@ -32,11 +33,11 @@ export const Add = ({onClick}) => (
 
 export {Grid, Row} from './Card'
 
-const Directory = ({open, services = [], toggleOpen}) => (
+const Directory = ({open, projects = [], toggleOpen}) => (
   <Grid>
-    {services.map(item => (
+    {projects.map(item => (
       <Row key={item.id}>
-        <ServiceCard to={`/service?id=${item.id}`} {...item} />
+        <ServiceCard to={`/service?id=${item.name}`} {...item} />
       </Row>
     ))}
     <Row>

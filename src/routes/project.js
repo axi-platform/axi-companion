@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'react-emotion'
 
-import {makeTab} from '../Tabs'
-import ProjectToolbar from './ProjectToolbar'
+import {makeTab} from '../components/Tabs'
+import ProjectToolbar from '../components/Project/ProjectToolbar'
 
-import {font} from '../../core/style'
+import {font} from '../core/style'
 
 const Section = styled.div`
   padding: 1.8em 2.5em;
@@ -23,15 +23,13 @@ const Page = makeTab(state => ({tab: state.app.tab || 0}))
 
 const Tab = ({is, children}) => (
   <Page is={is}>
-    <Section>
-      {children}
-    </Section>
+    <Section>{children}</Section>
   </Page>
 )
 
-const Project = ({qs: {id}}) => (
+const Project = () => (
   <div>
-    <ProjectToolbar name={id} />
+    <ProjectToolbar name="pmcxx" />
     <Tab is={0}>
       <h1>Hello, World!</h1>
     </Tab>

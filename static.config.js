@@ -39,6 +39,10 @@ export default {
       component: 'src/routes/dashboard',
     },
     {
+      path: '/project',
+      component: 'src/routes/project',
+    },
+    {
       path: '/printat',
       component: 'src/routes/printat',
     },

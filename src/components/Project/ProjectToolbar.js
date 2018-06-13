@@ -91,14 +91,4 @@ const ProjectToolbar = ({name, color, tab}) => (
   </div>
 )
 
-function selectColor(svc, name) {
-  const service = svc.filter(x => x.id === name)[0]
-
-  if (service) {
-    return service.color
-  }
-
-  return null
-}
-
 export default ProjectToolbar

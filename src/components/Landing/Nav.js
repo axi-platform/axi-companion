@@ -158,7 +158,7 @@ const Nav = () => (
     <Right>
       <Inline>
         <Menu to="#!">Sign In</Menu>
-        <TryButton to="/dashboard" light>
+        <TryButton to="/dashboard">
           Try Now
           <Ink />
         </TryButton>

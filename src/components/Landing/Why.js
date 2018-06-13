@@ -2,12 +2,12 @@ import React from 'react'
 import styled from 'react-emotion'
 import {css} from 'emotion'
 
-import {
-  Break, BreakMedium, DecoImage,
-  More, MoreText, landingColor
-} from './Layout'
+import {Break, BreakMedium, DecoImage, More, landingColor} from './Layout'
 
 import {mediumScreen, smallScreen, extraSmallScreen} from '../../core/style'
+
+import gamechars from '../../assets/gamechars.svg'
+import isomac from '../../assets/isomac.svg'
 
 const Row = styled.div`
   display: flex;
@@ -25,7 +25,7 @@ const Col = styled.div`
 
   @media screen and (min-width: ${smallScreen}px) {
     flex: ${props => props.flex || 1};
-    order: ${props => props.right ? 1 : 0};
+    order: ${props => (props.right ? 1 : 0)};
   }
 `
 
@@ -35,7 +35,7 @@ const WhySection = styled.section`
   }
 
   @media screen and (max-width: 999px) and (min-width: 767px) {
-    transform: translateY(-110px)
+    transform: translateY(-110px);
   }
 
   > ${Row} {
@@ -54,10 +54,12 @@ export const Trig = styled.div`
   background: white;
   transform: rotate(135deg);
 
-  ${props => props.right && css`
-    left: -1em;
-    right: initial;
-  `}
+  ${props =>
+    props.right &&
+    css`
+      left: -1em;
+      right: initial;
+    `};
 `
 
 export const ReasonBox = styled.div`
@@ -83,8 +85,10 @@ export const ReasonBox = styled.div`
   }
 
 
-  ${props => props.right && css`
-    color: ${'white'/* background: ${landingColor};
+  ${props =>
+    props.right &&
+    css`
+      color: ${'white' /* background: ${landingColor};
     text-align: right;
 
     > h2, > p, > ${MoreText} > span {
@@ -93,8 +97,8 @@ export const ReasonBox = styled.div`
 
     > svg {
       fill: white;
-    } */}
-  `}
+    } */};
+    `}
 
   @media screen and (max-width: ${mediumScreen}px) {
     padding: 2em 3em;
@@ -119,22 +123,43 @@ const Reason = ({right, more, ic, img = ic.img, link, children}) => (
       </ReasonBox>
     </Col>
     <Col>
-      <DecoImage src={img} alt='' {...ic} />
+      <DecoImage src={img} alt="" {...ic} />
     </Col>
   </Row>
 )
 
 // NOTE: Instantaneously Interact with Google's Physical Web
 
-const phyweb = {img: '/static/isocity.svg', width: 50, sWidth: 40, sTop: 1}
-const isodata = {img: '/static/isodata.svg', width: 35, sWidth: 32}
-const isomono = {img: '/static/isocitymono.svg', width: 60, sWidth: 45, top: 4, sTop: 0}
+const phyweb = {
+  img: require('../../assets/isocity.svg'),
+  width: 50,
+  sWidth: 40,
+  sTop: 1,
+}
+
+const isodata = {
+  img: require('../../assets/isodata.svg'),
+  width: 35,
+  sWidth: 32,
+}
+
+const isomono = {
+  img: require('../../assets/isocitymono.svg'),
+  width: 60,
+  sWidth: 45,
+  top: 4,
+  sTop: 0,
+}
 
 const phywebLink = 'https://google.github.io/physical-web/'
 
 const Why = () => (
   <WhySection>
-    <Reason more='Learn about the Physical Web' link={phywebLink} ic={phyweb} right>
+    <Reason
+      more="Learn about the Physical Web"
+      link={phywebLink}
+      ic={phyweb}
+      right>
       <h2>
         Walk Up and Use Anything&nbsp;
         <Break />
@@ -143,29 +168,27 @@ const Why = () => (
       <p>
         Your users should be able to easily interact with your product.&nbsp;
         <BreakMedium />
-        With Contextual Beacons and Progressive Web Apps, it is literally a
-        tap away. Axi gives you the foundation to deliver the best experience.
+        With Contextual Beacons and Progressive Web Apps, it is literally a tap
+        away. Axi gives you the foundation to deliver the best experience.
       </p>
     </Reason>
-    <Reason more='View The Technologies' ic={isodata}>
+    <Reason more="View The Technologies" ic={isodata}>
       <h2>Stay Ahead of the Curve</h2>
       <p>
         Axi implements various cutting edge technologies to fill in the gaps and
-        empower your solutions. From managing beacons and IoT devices,
-        composing microservices, and system monitoring.
+        empower your solutions. From managing beacons and IoT devices, composing
+        microservices, and system monitoring.
       </p>
     </Reason>
-    <Reason more='Try Some Examples' img='/static/gamechars.svg' right>
-      <h2>
-        Build Practical Solutions, not toys
-      </h2>
+    <Reason more="Try Some Examples" img={gamechars} right>
+      <h2>Build Practical Solutions, not toys</h2>
       <p>
-        Real Solutions are not just turning things on and viewing
-        data from sensors. Axi incorporates the core requirements of building
-        solutions based on our real world experiences and in-house projects.
+        Real Solutions are not just turning things on and viewing data from
+        sensors. Axi incorporates the core requirements of building solutions
+        based on our real world experiences and in-house projects.
       </p>
     </Reason>
-    <Reason more='Try it Out for Free' img='/static/isomac.svg'>
+    <Reason more="Try it Out for Free" img={isomac}>
       <h2>
         Decentralized Control,
         <br />
@@ -173,14 +196,12 @@ const Why = () => (
       </h2>
       <p>
         Axi Dashboard helps you to monitor and control every moving parts in
-        your solution. However, we relies on trusted third-parties, so you
-        can freely choose and switch between providers with no lock-ins.
+        your solution. However, we relies on trusted third-parties, so you can
+        freely choose and switch between providers with no lock-ins.
       </p>
     </Reason>
-    <Reason more='Learn More' ic={isomono} right>
-      <h2>
-        Open, Modular and Scalable
-      </h2>
+    <Reason more="Learn More" ic={isomono} right>
+      <h2>Open, Modular and Scalable</h2>
       <p>
         Our service-oriented architecture allows you to compose multiple
         Microservices together to form a solution. The High Availability
