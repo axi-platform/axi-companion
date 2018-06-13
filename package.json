@@ -41,6 +41,7 @@
     "react-typist": "^2.0.4",
     "react-typist-loop": "^0.0.5",
     "recompose": "^0.27.0",
+    "sift": "^5.1.0",
     "socket.io-client": "^2.1.1",
     "subscriptions-transport-ws": "^0.9.11"
   },

@@ -1,73 +1,66 @@
-import * as R from 'ramda'
 import {action, observable} from 'mobx'
-import Realtime from 'feathers-offline-realtime'
 
 import app from '../core/feathers'
 
-async function handleEvents(rootStore, app, service) {
-  const Service = app.service(service)
-  const store = rootStore[service]
-
-  Service.on('created', data => {
-    store.data = [...store.data, data]
-
-    console.info(`${service} created:`, data)
-  })
-
-  Service.on('updated', data => {
-    const index = store.data.findIndex(x => x.id === data.id)
-    store.data = R.update(index, data, store.data)
-
-    console.info(`${service} updated:`, data)
-  })
-
-  Service.on('patched', data => {
-    const index = store.data.findIndex(x => x.id === data.id)
-    store.data = R.update(index, data, store.data)
-
-    console.info(`${service} patched:`, data)
-  })
-
-  Service.on('removed', data => {
-    store.data = store.data.filter(x => x.id !== data.id)
-
-    console.info(`${service} removed:`, data)
-  })
-}
-
 class FeathersStore {
   @action
-  use = async service => {
-    if (!this[service]) {
-      this[service] = observable({data: [], loading: true, error: null})
-      handleEvents(this, app, service)
-
-      console.log(`[>] Service Registered: ${service}`)
+  init = name => {
+    if (!this[name]) {
+      this[name] = observable({
+        data: {},
+        records: [],
+        loading: false,
+        error: null,
+      })
     }
   }
 
   @action
-  find = async (service, query = {}) => {
-    const store = this[service]
-    store.loading = true
+  setLoading = state => {
+    if (state) {
+      store.error = null
+    }
 
-    const result = await app.service(service).find({query})
-    const {data, skip, total, limit} = result
-
-    store.data = data
-    store.skip = skip
-    store.total = total
-    store.limit = limit
-
-    store.loading = false
+    store.loading = state
   }
 
   @action
-  off = (service, customEvents) => {
+  find = async (service, query = {}) => {
     const Service = app.service(service)
-    const events = ['created', 'updated', 'patched', 'removed', ...customEvents]
+    const store = this[service]
 
-    events.forEach(event => Service.off(event))
+    this.setLoading(true)
+
+    try {
+      const {data, skip, total, limit} = await Service.find({query})
+      store.records = data
+
+      store.skip = skip
+      store.total = total
+      store.limit = limit
+    } catch (err) {
+      store.error = err
+    }
+
+    this.setLoading(false)
+  }
+
+  @action
+  get = async (service, id) => {
+    const Service = app.service(service)
+    const store = this[service]
+
+    this.setLoading(true)
+
+    try {
+      const data = await Service.get(id)
+
+      store.data = data
+    } catch (err) {
+      store.error = err
+    }
+
+    this.setLoading(false)
   }
 }
 
