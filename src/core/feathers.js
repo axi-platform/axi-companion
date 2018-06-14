@@ -9,4 +9,8 @@ const app = feathers()
 app.configure(feathers.socketio(socket))
 app.configure(feathers.authentication())
 
+if (typeof window !== 'undefined') {
+  window.app = app
+}
+
 export default app

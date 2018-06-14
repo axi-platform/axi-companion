@@ -1,16 +1,14 @@
 import {action, observable} from 'mobx'
 
-const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
-
 class AppStore {
-  @observable message = 'Welcome to Axi Platform!'
+  @observable tab = ''
 
   @action
-  fetchMessage = async () => {
-    await delay(1500)
-
-    this.message = 'Axi Platform is now Ready.'
+  setTab = tab => {
+    this.tab = tab
   }
 }
 
-export default new AppStore()
+const store = new AppStore()
+
+export default store

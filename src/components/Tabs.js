@@ -52,6 +52,4 @@ const Tabs = ({tab, go, tabs, color}) => (
   </TabWrapper>
 )
 
-export const makeTab = s => ({is, tab, children}) => tab === is && children
-
 export default Tabs

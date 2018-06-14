@@ -37,7 +37,7 @@ const Directory = ({open, projects = [], toggleOpen}) => (
   <Grid>
     {projects.map(item => (
       <Row key={item.id}>
-        <ServiceCard to={`/project/${item.name}`} {...item} />
+        <ServiceCard to={`/project/${item.id}`} {...item} />
       </Row>
     ))}
     <Row>

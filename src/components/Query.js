@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
-import {Observer} from 'mobx-react'
+import {observer} from 'mobx-react'
 import sift from 'sift'
 
 import stores from '../stores/feathers'
 
 import sync from '../core/sync'
 
+@observer
 export default class Query extends Component {
   constructor(props) {
     super(props)
@@ -14,7 +15,7 @@ export default class Query extends Component {
   }
 
   setup = async () => {
-    const {service, query, sifter, id} = this.props
+    let {service, query, sifter, id} = this.props
     const options = {}
 
     if (query) {
@@ -23,6 +24,8 @@ export default class Query extends Component {
     }
 
     if (id) {
+      id = parseInt(id) || id
+
       options.query = {id}
       options.publication = sift({id})
 
@@ -35,26 +38,20 @@ export default class Query extends Component {
     }
 
     this.sync = await sync(service, options)
-
-    console.log('[> Sync Instance]', this.sync)
   }
 
   render() {
     const {service, id, children} = this.props
     const store = stores[service]
 
-    return (
-      <Observer>
-        {() => {
-          const {data, records, loading, error} = store
+    const {data, records, loading, error} = store
 
-          if (id) {
-            return children(data, data.id || loading, error)
-          }
+    if (id) {
+      const isLoading = (data && !data.id) || loading
 
-          return children(records, loading, error)
-        }}
-      </Observer>
-    )
+      return children(data, isLoading, error)
+    }
+
+    return children(records, loading, error)
   }
 }

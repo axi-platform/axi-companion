@@ -66,8 +66,4 @@ class FeathersStore {
 
 const store = new FeathersStore()
 
-if (typeof window !== 'undefined') {
-  window.store = store
-}
-
 export default store

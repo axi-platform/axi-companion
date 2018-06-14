@@ -1,8 +1,11 @@
 import React from 'react'
 import styled from 'react-emotion'
+import {observer} from 'mobx-react'
 
 import Toolbar, {IconLink} from '../Toolbar'
 import Tabs from '../Tabs'
+
+import app from '../../stores/app'
 
 import colorize from '../../core/color'
 
@@ -35,7 +38,7 @@ const Separator = styled.div`
 
 export const Title = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-end;
 
   padding-left: 0.6em;
   font-size: 1.15em;
@@ -63,21 +66,23 @@ const MobileTab = styled.div`
 
 const tabs = ['Overview', 'Services', 'Devices']
 
-const ProjectToolbar = ({name, color, tab}) => (
+const ProjectToolbar = ({data}) => (
   <div>
     <Toolbar
-      color={color || colorize(name)}
+      color={data.color || colorize(data.name)}
       left={
         <Left>
           <IconLink to="/dashboard" icon="dashboard" />
           <Separator />
-          <Title min={6}>{name}</Title>
+          <Title min={6}>
+            {data.displayName} &nbsp;<small>({data.name})</small>
+          </Title>
         </Left>
       }
       right={
         <Right>
           <Desktop>
-            <Tabs tabs={tabs} tab={tab} />
+            <Tabs tabs={tabs} tab={app.tab} go={app.setTab} />
           </Desktop>
           <Separator />
           <IconLink to="/dashboard" icon="notifications" />
@@ -86,9 +91,14 @@ const ProjectToolbar = ({name, color, tab}) => (
       }
     />
     <MobileTab>
-      <Tabs tabs={tabs} tab={tab} color="hsl(264, 46%, 41%)" />
+      <Tabs
+        tabs={tabs}
+        tab={app.tab}
+        color="hsl(264, 46%, 41%)"
+        go={app.setTab}
+      />
     </MobileTab>
   </div>
 )
 
-export default ProjectToolbar
+export default observer(ProjectToolbar)
