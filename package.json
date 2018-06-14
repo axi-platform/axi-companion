@@ -26,6 +26,7 @@
     "graphql-tag": "^2.9.2",
     "mobx": "^4.2.1",
     "mobx-apollo": "^0.0.18",
+    "mobx-logger": "^0.7.0",
     "mobx-react": "^5.1.2",
     "polished": "^1.9.2",
     "ramda": "^0.25.0",

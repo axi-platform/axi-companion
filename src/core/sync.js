@@ -1,8 +1,11 @@
 import Realtime from 'feathers-offline-realtime'
+import optimisticMutator from 'feathers-offline-realtime/lib/optimistic-mutator'
 
 import app from './feathers'
 
 import stores from '../stores/feathers'
+
+const capitalize = text => text.charAt(0).toUpperCase() + text.substr(1)
 
 export default async function sync(name, config) {
   stores.init(name)
@@ -17,13 +20,17 @@ export default async function sync(name, config) {
   }
 
   const options = {
+    uuid: true,
     sort: Realtime.multiSort({id: 1}),
     subscriber,
     ...config,
   }
 
-  const rt = new Realtime(service, options)
-  await rt.connect()
+  const replicator = new Realtime(service, options)
 
-  return rt
+  app.use(`client${capitalize(name)}`, optimisticMutator({replicator}))
+
+  await replicator.connect()
+
+  return replicator
 }

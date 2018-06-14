@@ -36,7 +36,7 @@ export default class Query extends Component {
 
     this.sync = await sync(service, options)
 
-    console.log('Sync Instance:', this.sync)
+    console.log('[> Sync Instance]', this.sync)
   }
 
   render() {
