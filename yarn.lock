@@ -5228,6 +5228,10 @@ mobx-logger@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/mobx-logger/-/mobx-logger-0.7.0.tgz#aba34f3fcb6bf24df7abd923035afc0c99b0932b"
 
+mobx-react-router@^4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/mobx-react-router/-/mobx-react-router-4.0.4.tgz#b778618c84f16057f5ae9c09a4d364deade95fd8"
+
 mobx-react@^5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/mobx-react/-/mobx-react-5.1.2.tgz#ec5c2d29a1df823dbd1b37e214fa36a0907054e2"
@@ -5487,6 +5491,10 @@ object-copy@^0.1.0:
     copy-descriptor "^0.1.0"
     define-property "^0.2.5"
     kind-of "^3.0.3"
+
+object-hash@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/object-hash/-/object-hash-1.3.0.tgz#76d9ba6ff113cf8efc0d996102851fe6723963e2"
 
 object-keys@^1.0.8:
   version "1.0.11"

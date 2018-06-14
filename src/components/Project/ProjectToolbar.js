@@ -64,7 +64,7 @@ const MobileTab = styled.div`
   }
 `
 
-const tabs = ['Overview', 'Services', 'Devices']
+const tabs = ['overview', 'services', 'devices']
 
 const ProjectToolbar = ({data}) => (
   <div>

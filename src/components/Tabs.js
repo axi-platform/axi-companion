@@ -28,6 +28,7 @@ const Tab = styled.div`
   font-family: ${font};
   font-weight: 300;
   font-size: 1.1em;
+  text-transform: capitalize;
 `
 
 const TabIndicator = styled.div`
@@ -40,16 +41,21 @@ const TabIndicator = styled.div`
   transform: translateX(${props => props.index * 100}%);
 `
 
-const Tabs = ({tab, go, tabs, color}) => (
-  <TabWrapper>
-    {tabs.map((item, index) => (
-      <Tab key={index} onClick={() => go(index)}>
-        {item}
-        <Ink opacity={0.1} />
-      </Tab>
-    ))}
-    <TabIndicator color={color} total={tabs.length} index={tab} />
-  </TabWrapper>
-)
+const Tabs = ({tab, go, tabs, color}) => {
+  const index = Math.max(tabs.indexOf(tab), 0)
+  console.log('Index is', index)
+
+  return (
+    <TabWrapper>
+      {tabs.map(item => (
+        <Tab key={item} onClick={() => go(item)}>
+          {item}
+          <Ink opacity={0.1} />
+        </Tab>
+      ))}
+      <TabIndicator color={color} total={tabs.length} index={index} />
+    </TabWrapper>
+  )
+}
 
 export default Tabs

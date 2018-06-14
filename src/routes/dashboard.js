@@ -1,7 +1,5 @@
 import React from 'react'
 import styled from 'react-emotion'
-// import {Query} from 'react-apollo'
-// import gql from 'graphql-tag'
 
 import Query from '../components/Query'
 import Toolbar from '../components/Toolbar'
@@ -24,6 +22,15 @@ const Dashboard = () => (
     <Toolbar title="Dashboard" />
     <Container>
       <Query service="projects">
+        {(data, loading, error) => {
+          if (loading) return <p>Loading...</p>
+          if (error) return <p>Error :(</p>
+
+          return <Directory projects={data} />
+        }}
+      </Query>
+
+      <Query service="projects" query={{displayName: 'PrintAt'}}>
         {(data, loading, error) => {
           if (loading) return <p>Loading...</p>
           if (error) return <p>Error :(</p>

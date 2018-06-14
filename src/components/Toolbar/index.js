@@ -16,8 +16,9 @@ export const Nav = styled.nav`
   font-family: ${font};
   font-weight: 300;
   background: ${props => props.color || primary};
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.20);
-  transition: 0.4s cubic-bezier(0.22, 0.61, 0.36, 1) all;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+  transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
 `
 
 export const Title = styled.div`
@@ -44,9 +45,7 @@ const Toolbar = ({title, color, left, right, children}) => (
       {title && <Title>{title}</Title>}
     </Left>
     {children}
-    <Section>
-      {right}
-    </Section>
+    <Section>{right}</Section>
   </Nav>
 )
 
