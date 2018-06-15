@@ -1,7 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import App from './components/App'
+import App from './common/App'
+
+import 'normalize.css'
 
 if (typeof document !== 'undefined') {
   const renderMethod = module.hot

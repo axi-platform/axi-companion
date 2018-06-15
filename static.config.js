@@ -32,23 +32,23 @@ export default {
   getRoutes: async () => [
     {
       path: '/',
-      component: 'src/routes/landing',
+      component: 'src/landing',
     },
     {
       path: '/dashboard',
-      component: 'src/routes/dashboard',
+      component: 'src/project-directory',
     },
     {
       path: '/project',
-      component: 'src/routes/project',
+      component: 'src/project-editor',
     },
     {
       path: '/printat',
-      component: 'src/routes/printat',
+      component: 'src/printat',
     },
     {
       is404: true,
-      component: 'src/routes/404',
+      component: 'src/not-found',
     },
   ],
   renderToHtml: (render, Comp, meta) => {
