@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'react-emotion'
 
-import {Grid, Row, ServiceCard, Add} from '../Directory'
+import {Grid, Row, ServiceCard, Add} from './BlueprintDirectory'
 
 const Heading = styled.div`
   display: flex;

@@ -1,6 +1,8 @@
 import React from 'react'
 
 import Nav from './Nav'
+import Tab from './Tab'
+import BottomNav from './BottomNav'
 
 import Locator from '../printat-locator'
 import Document from '../printat-document'
@@ -9,7 +11,12 @@ import Queue from '../printat-queue'
 const Dashboard = props => (
   <main>
     <Nav />
-    <Locator />
+
+    <Tab name="locator" component={Locator} />
+    <Tab name="component" component={Document} />
+    <Tab name="queue" component={Queue} />
+
+    <BottomNav />
   </main>
 )
 

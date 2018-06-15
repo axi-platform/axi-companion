@@ -1,9 +1,11 @@
 import {enableLogging} from 'mobx-logger'
 
-import app from './app'
 import routing from './routing'
 
-const stores = {app, routing}
+import print from '../printat/store'
+import project from '../project-editor/store'
+
+const stores = {routing, print, project}
 
 enableLogging()
 

@@ -14,7 +14,7 @@ const Container = styled.div`
   font-weight: 300;
 `
 
-const Dashboard = () => (
+const ProjectDirectory = () => (
   <div>
     <Toolbar title="Dashboard" />
     <Container>
@@ -30,4 +30,4 @@ const Dashboard = () => (
   </div>
 )
 
-export default Dashboard
+export default ProjectDirectory

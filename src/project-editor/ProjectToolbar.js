@@ -2,10 +2,11 @@ import React from 'react'
 import styled from 'react-emotion'
 import {observer} from 'mobx-react'
 
+import store from './store'
+
 import Toolbar, {IconLink} from '../ui/Toolbar'
 import Tabs from '../ui/Tabs'
 
-import app from '../common/stores/app'
 import colorize from '../utils/color'
 
 const Left = styled.div`
@@ -81,7 +82,7 @@ const ProjectToolbar = ({data}) => (
       right={
         <Right>
           <Desktop>
-            <Tabs tabs={tabs} tab={app.tab} go={app.setTab} />
+            <Tabs tabs={tabs} tab={store.tab} go={store.setTab} />
           </Desktop>
           <Separator />
           <IconLink to="/dashboard" icon="notifications" />
@@ -92,9 +93,9 @@ const ProjectToolbar = ({data}) => (
     <MobileTab>
       <Tabs
         tabs={tabs}
-        tab={app.tab}
+        tab={store.tab}
         color="hsl(264, 46%, 41%)"
-        go={app.setTab}
+        go={store.setTab}
       />
     </MobileTab>
   </div>

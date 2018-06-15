@@ -6,7 +6,7 @@ import Paper from '../ui/Paper'
 
 const Heading = styled.h1`
   margin: 0;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.35em;
 
   color: #a3b4bb;
   font-weight: 300;
@@ -15,7 +15,16 @@ const Heading = styled.h1`
   text-align: right;
 `
 
-const SubHeading = styled.h2``
+const SubHeading = styled.h2`
+  margin: 0;
+  margin-bottom: 0.35em;
+
+  color: #a3b4bb;
+  font-weight: 300;
+  font-size: 1.15em;
+  line-height: 1.15em;
+  text-align: right;
+`
 
 const Strong = styled.span`
   color: #222;
@@ -42,7 +51,7 @@ const StationStatus = ({station}) => {
   if (!station || !id) {
     return (
       <Heading>
-        Please select a <Strong>Print Station</Strong> to print to.
+        Please select a <Strong>Print Shop</Strong> to print to.
       </Heading>
     )
   }
@@ -55,8 +64,7 @@ const StationStatus = ({station}) => {
 
       <SubHeading primary={isOnline}>
         {isOnline && <span>{queue} Queues</span>}
-
-        <span>{presence}</span>
+        {/* <span>{presence}</span> */}
       </SubHeading>
     </div>
   )
@@ -71,7 +79,7 @@ const StationDetail = ({selected, onConfirm}) => {
       <StationStatus station={selected} />
 
       <Button onClick={onConfirm} disabled={!isOnline} primary>
-        {isOnline ? 'Proceed' : 'Select an Available Printer'}
+        {isOnline ? 'Proceed' : 'Print Shop is Unavailable.'}
       </Button>
     </Container>
   )

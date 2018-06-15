@@ -46,7 +46,7 @@ export default class StationMap extends Component {
             <div>
               <StationDetail
                 selected={store.station}
-                onConfirm={this.proceed}
+                onConfirm={store.proceed}
               />
 
               <MapContainer>
