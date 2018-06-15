@@ -68,7 +68,7 @@ const Item = ({label, icon, onClick, active}) => (
   <ItemContainer onClick={onClick}>
     <Icon i={icon} fill={active ? primary : inactive} />
     <ItemLabel active={active}>{label}</ItemLabel>
-    <Ink />
+    <Ink opacity={0.1} />
   </ItemContainer>
 )
 
