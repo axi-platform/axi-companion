@@ -21,6 +21,7 @@
     "axios": "^0.18.0",
     "emotion": "^9.1.2",
     "emotion-server": "^9.1.2",
+    "feathers-offline-log": "^0.0.1",
     "feathers-offline-realtime": "^0.1.2",
     "feathers-reactive": "^0.7.0",
     "google-map-react": "^1.0.4",

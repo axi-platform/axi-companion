@@ -9,7 +9,7 @@ const app = feathers()
 
 app.configure(feathers.socketio(socket))
 app.configure(feathers.authentication())
-app.configure(reactive())
+app.configure(reactive({idField: 'id'}))
 
 if (typeof window !== 'undefined') {
   window.app = app
