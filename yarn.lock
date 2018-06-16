@@ -149,7 +149,7 @@
     "@feathersjs/rest-client" "1.4.0"
     "@feathersjs/socketio-client" "1.1.0"
 
-"@feathersjs/commons@^1.2.0", "@feathersjs/commons@^1.4.0":
+"@feathersjs/commons@^1.2.0", "@feathersjs/commons@^1.4.0", "@feathersjs/commons@^1.4.1":
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/@feathersjs/commons/-/commons-1.4.1.tgz#81f19ffb83eac6afd33c629d4d0cad57441fbede"
 
@@ -159,7 +159,7 @@
   dependencies:
     debug "^3.1.0"
 
-"@feathersjs/feathers@3.1.6":
+"@feathersjs/feathers@3.1.6", "@feathersjs/feathers@^3.1.5":
   version "3.1.6"
   resolved "https://registry.yarnpkg.com/@feathersjs/feathers/-/feathers-3.1.6.tgz#9adf7c814928935eb3f86290f84e9e3821a0e3f5"
   dependencies:
@@ -3499,6 +3499,17 @@ feathers-query-filters@2.1.2:
   resolved "https://registry.yarnpkg.com/feathers-query-filters/-/feathers-query-filters-2.1.2.tgz#cdb18224db5e19cc0140d528108e0908d5eb0654"
   dependencies:
     feathers-commons "^0.8.0"
+
+feathers-reactive@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/feathers-reactive/-/feathers-reactive-0.7.0.tgz#a9aba6dbb5e854896ae101ece8474f8191d68230"
+  dependencies:
+    "@feathersjs/commons" "^1.4.1"
+    "@feathersjs/feathers" "^3.1.5"
+    debug "^3.1.0"
+    json-stable-stringify "^1.0.1"
+    rxjs "^6.1.0"
+    sift "^5.1.0"
 
 figures@^2.0.0:
   version "2.0.0"
@@ -6929,6 +6940,12 @@ rx-lite@*, rx-lite@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/rx-lite/-/rx-lite-4.0.8.tgz#0b1e11af8bc44836f04a6407e92da42467b79444"
 
+rxjs@^6.1.0, rxjs@^6.2.1:
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.2.1.tgz#246cebec189a6cbc143a3ef9f62d6f4c91813ca1"
+  dependencies:
+    tslib "^1.9.0"
+
 safe-buffer@5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
@@ -7706,6 +7723,10 @@ trim-right@^1.0.1:
 tryer@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/tryer/-/tryer-1.0.0.tgz#027b69fa823225e551cace3ef03b11f6ab37c1d7"
+
+tslib@^1.9.0:
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.2.tgz#8be0cc9a1f6dc7727c38deb16c2ebd1a2892988e"
 
 tty-browserify@0.0.0:
   version "0.0.0"

@@ -8,12 +8,12 @@ import BottomNavigation from '../ui/BottomNavigation'
 const tabs = [
   {
     path: 'locator',
-    label: 'Select Stations',
+    label: 'Print Shops',
     icon: 'pin',
   },
   {
     path: 'document',
-    label: 'Upload Document',
+    label: 'Upload File',
     icon: 'attach',
   },
   {

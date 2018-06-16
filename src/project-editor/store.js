@@ -20,4 +20,6 @@ class ProjectStore {
   }
 }
 
-export default ProjectStore
+export const store = new ProjectStore()
+
+export default store

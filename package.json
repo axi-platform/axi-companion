@@ -22,6 +22,7 @@
     "emotion": "^9.1.2",
     "emotion-server": "^9.1.2",
     "feathers-offline-realtime": "^0.1.2",
+    "feathers-reactive": "^0.7.0",
     "google-map-react": "^1.0.4",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
@@ -46,6 +47,7 @@
     "react-typist": "^2.0.4",
     "react-typist-loop": "^0.0.5",
     "recompose": "^0.27.0",
+    "rxjs": "^6.2.1",
     "sift": "^5.1.0",
     "socket.io-client": "^2.1.1",
     "subscriptions-transport-ws": "^0.9.11"
