@@ -1,5 +1,7 @@
-import React from 'react'
+import React, {Component} from 'react'
 import Ink from 'react-ink'
+import {observable, action} from 'mobx'
+import {observer} from 'mobx-react'
 
 import {Grid, Row, Card, Content, Meta, Adder, AdderRing, Small} from './Card'
 import Create from './Create'
@@ -33,20 +35,29 @@ export const Add = ({onClick}) => (
 
 export {Grid, Row} from './Card'
 
-const Directory = ({open, projects = [], toggleOpen}) => (
-  <Grid>
-    {projects.map(item => (
-      <Row key={item.id}>
-        <ServiceCard to={`/project/${item.id}`} {...item} />
-      </Row>
-    ))}
-    <Row>
-      <Add onClick={toggleOpen} />
-    </Row>
-    <Modal open={open} onClose={toggleOpen}>
-      <Create />
-    </Modal>
-  </Grid>
-)
+@observer
+export default class Directory extends Component {
+  @observable open = false
 
-export default Directory
+  @action toggleOpen = () => (this.open = !this.open)
+
+  render() {
+    const {projects} = this.props
+
+    return (
+      <Grid>
+        {projects.map(item => (
+          <Row key={item.id}>
+            <ServiceCard to={`/project/${item.id}`} {...item} />
+          </Row>
+        ))}
+        <Row>
+          <Add onClick={this.toggleOpen} />
+        </Row>
+        <Modal open={this.open} onClose={this.toggleOpen}>
+          <Create />
+        </Modal>
+      </Grid>
+    )
+  }
+}

@@ -33,7 +33,7 @@ const Backdrop = styled.div`
   z-index: 1;
   background: rgba(255, 255, 255, 0.9);
 
-  display: ${props => props.open ? 'block' : 'none'};
+  display: ${props => (props.open ? 'block' : 'none')};
 
   animation-name: ${opacityIn};
   animation-duration: 0.3s;
@@ -48,7 +48,7 @@ const Wrapper = styled.div`
   bottom: 0;
   right: 0;
 
-  display: ${props => props.open ? 'flex' : 'none'};
+  display: ${props => (props.open ? 'flex' : 'none')};
   align-items: center;
   justify-content: center;
   z-index: 1;
@@ -62,12 +62,12 @@ const Modal = styled.div`
   background: #fafafa;
   padding: 0.8em;
   font-weight: 300;
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   border-radius: 0.2em;
   z-index: 1;
 
   animation-name: ${scaleIn};
-  animation-duration: 0.5s;
+  animation-duration: 0.3s;
   animation-iteration-count: 1;
   animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
   transform: scale(1.1);
@@ -103,7 +103,7 @@ const ModalBox = ({open, onClose, children}) => (
       <Header>
         <span>Create a Project</span>
         <IconButton onClick={onClose}>
-          <Icon i='close' fill='#333' />
+          <Icon i="close" fill="#333" />
         </IconButton>
       </Header>
       {children}
