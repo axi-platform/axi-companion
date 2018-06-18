@@ -1,9 +1,12 @@
-import React from 'react'
+import React, {Component} from 'react'
 import styled from 'react-emotion'
 import Ink from 'react-ink'
+import {observer} from 'mobx-react'
+import {observable, action} from 'mobx'
 
 import {Card, Content, Meta} from './Card'
 
+import app from '../utils/feathers'
 import color from '../utils/color'
 
 const Input = styled.input`
@@ -60,46 +63,76 @@ const Label = styled.div`
   font-size: 0.8em;
 `
 
-const mapStateToProps = state => ({
-  id: state.app.id,
-  desc: state.app.desc,
-  icon: state.app.icon,
-  project: state.app.project,
-})
+const slug = text => text.toLowerCase().replace(/ /g, '-')
 
-const CreateCard = ({
-  id,
-  project,
-  desc,
-  icon,
-  setName,
-  setId,
-  setDesc,
-  addService,
-}) => (
-  <CardWrapper>
-    <Card color={color(`phoomparin:${id}`)}>
-      <Content>
-        <Input placeholder="Project Name" value={project} onChange={setName} />
-        <Input
-          size="0.6em"
-          placeholder="Description"
-          value={desc}
-          onChange={setDesc}
-          sub
-        />
-        <img src={icon} alt="" />
-      </Content>
-      <Meta>
-        <Label>phoomparin:</Label>
-        <Input size="0.8em" placeholder="project" value={id} onChange={setId} />
-      </Meta>
-    </Card>
-    <Confirm onClick={addService} color={color(`phoomparin:${id}`)}>
-      Create
-      <Ink />
-    </Confirm>
-  </CardWrapper>
-)
+@observer
+export default class CreateCard extends Component {
+  @observable username = 'phoomparin'
+  @observable name = ''
+  @observable displayName = ''
+  @observable description = ''
+  @action
+  setDisplayName = e => {
+    const {value} = e.target
 
-export default CreateCard
+    this.name = slug(value)
+    this.displayName = value
+  }
+
+  @action setName = e => (this.name = e.target.value)
+
+  @action setDesc = e => (this.description = e.target.value)
+
+  @action
+  create = async () => {
+    const projects = app.service('projects')
+
+    const data = {
+      name: this.name,
+      displayName: this.displayName,
+      description: this.description,
+      color: color(this.name),
+      icon: 'lumbot',
+    }
+
+    const result = await projects.create(data)
+
+    console.log('Created Project:', result)
+  }
+
+  render() {
+    return (
+      <CardWrapper>
+        <Card color={color(this.name)}>
+          <Content>
+            <Input
+              placeholder="Project Name"
+              value={this.displayName}
+              onChange={this.setDisplayName}
+            />
+            <Input
+              size="0.6em"
+              placeholder="Description"
+              value={this.description}
+              onChange={this.setDesc}
+              sub
+            />
+          </Content>
+          <Meta>
+            <Label>{this.username}:</Label>
+            <Input
+              size="0.8em"
+              placeholder="Project ID"
+              value={this.name}
+              onChange={this.setName}
+            />
+          </Meta>
+        </Card>
+        <Confirm onClick={this.create} color={color(this.name)}>
+          Create
+          <Ink />
+        </Confirm>
+      </CardWrapper>
+    )
+  }
+}
