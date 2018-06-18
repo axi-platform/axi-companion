@@ -1,5 +1,6 @@
 {
-  "name": "react-static-example-basic",
+  "name": "axi-companion",
+  "description": "Progressive Web Application Client for the Axi Platform.",
   "version": "1.0.1",
   "main": "index.js",
   "license": "MIT",

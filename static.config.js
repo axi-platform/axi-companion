@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {extractCritical} from 'emotion-server'
 
-const siteRoot = 'http://localhost'
+const siteRoot = 'https://axiplatform.com'
 
 class Document extends Component {
   render() {
@@ -32,7 +32,7 @@ export default {
   getRoutes: async () => [
     {
       path: '/',
-      component: 'src/landing',
+      component: 'src/landing/index',
     },
     {
       path: '/dashboard',
