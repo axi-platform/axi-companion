@@ -5,7 +5,7 @@ import styled from 'react-emotion'
 
 import StationDetail from './StationDetail'
 
-import {getPosition, getNearestStation} from './utils'
+import {getPosition, getNearbyStations} from './utils'
 
 import Map from '../ui/Map'
 import Query from '../common/Query'
@@ -30,8 +30,10 @@ export default class StationMap extends Component {
     const {coords} = await getPosition()
     this.position = [coords.latitude, coords.longitude]
 
+    console.log('Current Position is', this.position)
+
     // Set the default print station to the nearest one.
-    const device = await getNearestStation(this.position)
+    const [device] = await getNearbyStations(this.position)
     store.setStation(device)
   }
 
@@ -42,6 +44,9 @@ export default class StationMap extends Component {
           if (loading) return <div>Loading...</div>
           if (error) return <div>Error: {error.message}</div>
 
+          const pins = data
+          console.log('Pins are', pins)
+
           return (
             <div>
               <StationDetail
@@ -51,8 +56,8 @@ export default class StationMap extends Component {
 
               <MapContainer>
                 <Map
-                  center={this.center}
-                  pins={data}
+                  center={this.position}
+                  pins={pins}
                   onMarkerClick={store.setStation}
                 />
               </MapContainer>

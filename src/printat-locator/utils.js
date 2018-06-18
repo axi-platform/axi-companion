@@ -9,27 +9,13 @@ export const getPosition = () =>
     navigator.geolocation.getCurrentPosition(resolve, reject)
   })
 
-// Retrieve the nearest print station
-export async function getNearestStation(position) {
-  const devices = app.service('devices')
+// Retrieve the print stations near you.
+export async function getNearbyStations([lat, lon]) {
+  const nearby = app.service('devices/nearby')
 
-  // Query the nearest print device
-  const {data, total} = await devices.find({
-    query: {
-      $limit: 1,
-      // loc: {$near: position},
-      // presence: 'online',
-      // service: 'printat',
-    },
-  })
+  // Query the nearby print device
+  const {data} = await nearby.find({query: {lat, lon}})
+  console.log('Nearby Shops:', data)
 
-  // Notify that there aren't any available print shops nearby.
-  if (!data || total === 0) {
-    throw new Error("There aren't any nearby print shops right now.")
-  }
-
-  // Choose the nearest device.
-  const [device] = data
-
-  return device
+  return data
 }

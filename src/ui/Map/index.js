@@ -29,7 +29,7 @@ const Map = ({center, pins, onMarkerClick}) => (
         <Pin
           key={i}
           type={pinType(i, pins.length)}
-          onClick={onMarkerClick}
+          onClick={() => onMarkerClick(props)}
           {...props}
         />
       ))}

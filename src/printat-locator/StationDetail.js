@@ -45,7 +45,7 @@ const Container = styled(Paper)`
 `
 
 const StationStatus = ({station}) => {
-  const {id, name, presence, queue} = station
+  const {id, displayName, presence, queue} = station
   const isOnline = presence === 'online'
 
   if (!station || !id) {
@@ -59,7 +59,7 @@ const StationStatus = ({station}) => {
   return (
     <div>
       <Heading>
-        Selected <Strong>{name}</Strong> as destination.
+        Selected <Strong>{displayName}</Strong> as destination.
       </Heading>
 
       <SubHeading primary={isOnline}>
