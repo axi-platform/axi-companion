@@ -32,7 +32,7 @@ export default {
   getRoutes: async () => [
     {
       path: '/',
-      component: 'src/landing/index',
+      component: 'src/landing',
     },
     {
       path: '/dashboard',
