@@ -18,34 +18,38 @@ function handleError({graphQLErrors, networkError}) {
   }
 }
 
-const httpLink = new HttpLink({
-  uri: 'http://localhost:3030/graphql',
-  credentials: 'same-origin',
-  onError,
-})
+let client = {}
 
-const wsLink = new WebSocketLink({
-  uri: `ws://localhost:3030/subscriptions`,
-  options: {
-    reconnect: true,
-  },
-})
+if (typeof window !== 'undefined') {
+  const httpLink = new HttpLink({
+    uri: 'http://localhost:3030/graphql',
+    credentials: 'same-origin',
+    onError,
+  })
 
-const link = ApolloLink.from([
-  onError(handleError),
-  split(
-    ({query}) => {
-      const {kind, operation} = getMainDefinition(query)
-      return kind === 'OperationDefinition' && operation === 'subscription'
+  const wsLink = new WebSocketLink({
+    uri: `ws://localhost:3030/subscriptions`,
+    options: {
+      reconnect: true,
     },
-    wsLink,
-    httpLink,
-  ),
-])
+  })
 
-const client = new ApolloClient({
-  link,
-  cache: new InMemoryCache(),
-})
+  const link = ApolloLink.from([
+    onError(handleError),
+    split(
+      ({query}) => {
+        const {kind, operation} = getMainDefinition(query)
+        return kind === 'OperationDefinition' && operation === 'subscription'
+      },
+      wsLink,
+      httpLink,
+    ),
+  ])
+
+  client = new ApolloClient({
+    link,
+    cache: new InMemoryCache(),
+  })
+}
 
 export default client
