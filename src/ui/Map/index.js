@@ -22,18 +22,26 @@ const config = {
   }),
 }
 
-const Map = ({center, pins, onMarkerClick}) => (
-  <GoogleMap center={center} {...config}>
-    {pins &&
-      pins.map((props, i) => (
-        <Pin
-          key={i}
-          type={pinType(i, pins.length)}
-          onClick={() => onMarkerClick(props)}
-          {...props}
-        />
-      ))}
-  </GoogleMap>
-)
+const Map = ({pins = [], center, onMarkerClick}) => {
+  pins = pins.map(x => ({
+    lat: x.latitude,
+    lng: x.longitude,
+    ...x,
+  }))
+
+  return (
+    <GoogleMap center={center} {...pins} {...config}>
+      {pins &&
+        pins.map((props, i) => (
+          <Pin
+            key={i}
+            type={pinType(i, pins.length)}
+            onClick={() => onMarkerClick(props)}
+            {...props}
+          />
+        ))}
+    </GoogleMap>
+  )
+}
 
 export default Map

@@ -44,8 +44,7 @@ export default class StationMap extends Component {
           if (loading) return <div>Loading...</div>
           if (error) return <div>Error: {error.message}</div>
 
-          const pins = data
-          console.log('Pins are', pins)
+          console.log('Data is', data)
 
           return (
             <div>
@@ -57,7 +56,7 @@ export default class StationMap extends Component {
               <MapContainer>
                 <Map
                   center={this.position}
-                  pins={pins}
+                  pins={data}
                   onMarkerClick={store.setStation}
                 />
               </MapContainer>
