@@ -1,7 +1,7 @@
 import React from 'react'
 import GoogleMap from 'google-map-react'
 
-import Pin, {pinType} from './Pin'
+import Pin from './Pin'
 
 import {NaturalMap} from './style'
 
@@ -32,13 +32,8 @@ const Map = ({pins = [], center, onMarkerClick}) => {
   return (
     <GoogleMap center={center} {...pins} {...config}>
       {pins &&
-        pins.map((props, i) => (
-          <Pin
-            key={i}
-            type={pinType(i, pins.length)}
-            onClick={() => onMarkerClick(props)}
-            {...props}
-          />
+        pins.map((pin, i) => (
+          <Pin key={i} onClick={() => onMarkerClick(pin)} {...pin} />
         ))}
     </GoogleMap>
   )

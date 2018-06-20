@@ -4,38 +4,36 @@ import {keyframes} from 'emotion'
 
 /*
   Pin Colors are defined here.
+  TODO: Use color codes to indicate queue activity
 */
 
 export const pinColor = '#00cae9'
 export const pinHoverColor = '#3498db'
 
-export const startPinColor = '#2ecc71'
-export const startPinHoverColor = '#27ae60'
+// Indicate that the device is online and available at the moment.
+export const availableColor = '#2ecc71'
+export const availableHoverColor = '#27ae60'
 
-export const endPinColor = '#e74c3c'
-export const endPinHoverColor = '#c0392b'
+// Indicate that the device is most likely at its peak.
+// You might experience lots of queue, and waiting time could be long.
+export const peakColor = '#e74c3c'
+export const peakHoverColor = '#c0392b'
 
-export const pinType = (index, total) => {
-  if (index === 0) {
-    return 'start'
-  } else if (total - 1 === index) {
-    return 'end'
-  }
+// Indicate that the device is unavailable, due to being offline or in maintenance.
+export const unavailableColor = '#9E9E9E'
+export const unavailableHoverColor = '#616161'
 
-  return null
+const getPinColor = props => {
+  if (props.presence === 'offline') return unavailableColor
+
+  return availableColor
 }
 
-// prettier-ignore
-export const getPinColor = type => ({
-  start: startPinColor,
-  end: endPinColor
-}[type] || pinColor)
+const getPinHoverColor = props => {
+  if (props.presence === 'offline') return unavailableHoverColor
 
-// prettier-ignore
-export const getPinHoverColor = type => ({
-  start: startPinHoverColor,
-  end: endPinHoverColor
-}[type] || pinHoverColor)
+  return availableHoverColor
+}
 
 /*
   Custom Map Pin Components
@@ -78,7 +76,7 @@ const PinItem = styled.div`
   height: 30px;
   transform: rotate(-45deg);
   border-radius: 50% 50% 50% 0;
-  background: ${props => getPinColor(props.type)};
+  background: ${getPinColor};
   animation: ${bounce} 1s ease;
   cursor: pointer;
   left: 50%;
@@ -100,7 +98,7 @@ const PinItem = styled.div`
       0 2px 10px 0 rgba(0, 0, 0, 0.12);
   }
   &:hover {
-    background: ${props => getPinHoverColor(props.type)};
+    background: ${getPinHoverColor};
     transform: rotate(-45deg) scale(1.3);
   }
 `
@@ -120,7 +118,7 @@ const PinEffect = styled.div`
     animation-delay: 1.1s;
     animation: ${pulsate} 1s ease-out infinite;
     border-radius: 50%;
-    box-shadow: 0 0 1px 2px ${props => getPinColor(props.type)};
+    box-shadow: 0 0 1px 2px ${getPinColor};
     content: '';
     height: 40px;
     margin: -13px 0 0 -13px;
@@ -136,10 +134,10 @@ const PinContainer = styled.div`
   z-index: 1;
 `
 
-const Pin = ({name, onClick, type}) => (
+const Pin = ({name, presence, onClick}) => (
   <PinContainer onClick={onClick}>
-    <PinItem type={type} />
-    <PinEffect type={type} />
+    <PinItem name={name} presence={presence} />
+    {presence === 'online' && <PinEffect name={name} presence={presence} />}
   </PinContainer>
 )
 

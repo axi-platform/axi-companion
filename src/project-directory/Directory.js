@@ -9,10 +9,10 @@ import Create from './Create'
 import Modal from '../ui/Modal'
 import Icon from '../ui/Icon'
 
-import toColor from '../utils/color'
+import colorize from '../utils/color-hash'
 
 export const ServiceCard = data => (
-  <Card color={data.color || toColor(data.name)} to={data.to}>
+  <Card color={data.color || colorize(data.name)} to={data.to}>
     <Content>
       <Ink />
       {data.displayName}

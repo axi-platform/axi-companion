@@ -7,7 +7,7 @@ import {observable, action} from 'mobx'
 import {Card, Content, Meta} from './Card'
 
 import app from '../utils/feathers'
-import color from '../utils/color'
+import colorize from '../utils/color-hash'
 
 const Input = styled.input`
   background: transparent;
@@ -91,7 +91,7 @@ export default class CreateCard extends Component {
       name: this.name,
       displayName: this.displayName,
       description: this.description,
-      color: color(this.name),
+      color: colorize(this.name),
       icon: 'lumbot',
     }
 
@@ -103,7 +103,7 @@ export default class CreateCard extends Component {
   render() {
     return (
       <CardWrapper>
-        <Card color={color(this.name)}>
+        <Card color={colorize(this.name)}>
           <Content>
             <Input
               placeholder="Project Name"
@@ -128,7 +128,7 @@ export default class CreateCard extends Component {
             />
           </Meta>
         </Card>
-        <Confirm onClick={this.create} color={color(this.name)}>
+        <Confirm onClick={this.create} color={colorize(this.name)}>
           Create
           <Ink />
         </Confirm>

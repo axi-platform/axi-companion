@@ -7,7 +7,7 @@ import store from './store'
 import Toolbar, {IconLink} from '../ui/Toolbar'
 import Tabs from '../ui/Tabs'
 
-import colorize from '../utils/color'
+import colorize from '../utils/color-hash'
 
 const Left = styled.div`
   display: flex;
