@@ -6,9 +6,10 @@ import StoreMap from './StoreMap'
 import Nearby from './Nearby'
 
 import Query from '../common/Query'
-
 import {getPosition, getNearbyStores} from './utils'
+
 import store from '../printat/store'
+import noti from '../utils/noti'
 
 @observer
 export default class StoreLocator extends Component {
@@ -23,6 +24,7 @@ export default class StoreLocator extends Component {
 
     // Set the default print store to the nearest one.
     const devices = await getNearbyStores(store.position)
+    noti.success(`พบ ${devices.length} ร้านปริ้นท์ใกล้ตัวคุณ`)
 
     this.nearby = devices
     store.setStore(devices[0])

@@ -47,15 +47,11 @@ const Right = styled.div`
 
 const Nav = () => (
   <NavContainer>
-    <Left>
-      <Icon i="pin" />
-    </Left>
+    <Left />
     <Link to="/printat">
       <Logo src={pwLogo} />
     </Link>
-    <Right>
-      <Icon i="pin" />
-    </Right>
+    <Right />
   </NavContainer>
 )
 

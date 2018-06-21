@@ -27,7 +27,7 @@ class PrintStore {
       this.position = [shop.latitude, shop.longitude]
     }
 
-    noti.info(`Selected ${shop.displayName} as destination.`)
+    noti.info(`เลือก ${shop.displayName} เป็นร้านปรินท์ปลายทางแล้ว`)
   }
 
   @action

@@ -8,13 +8,6 @@ import {sm} from '../ui/style'
 
 import store from '../printat/store'
 
-const Heading = styled.h1`
-  margin: 1.05em 0;
-  color: #555;
-  font-weight: 400;
-  font-size: 1.5em;
-`
-
 const Title = styled.div`
   font-weight: 400;
   font-size: 1.15em;
@@ -82,7 +75,7 @@ const Grid = styled.div`
 
 function distance(meter) {
   if (meter > 1000) {
-    return `${(meter / 2).toFixed(2)} กิโล`
+    return `${(meter / 1000).toFixed(2)} กิโล`
   }
 
   return `${Math.round(meter)} เมตร`
