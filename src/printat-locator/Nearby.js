@@ -18,6 +18,7 @@ const Title = styled.div`
 
 // prettier-ignore
 const Card = styled(Paper)`
+  color: #555;
   position: relative;
   cursor: pointer;
 
@@ -26,7 +27,7 @@ const Card = styled(Paper)`
 
   user-select: none;
 
-  padding: 0.95em 1em;
+  padding: 1em 1.2em;
   font-size: 1.05em;
 
   box-shadow: 0 12px 20px -10px rgba(255, 255, 255, 0.38),
@@ -57,8 +58,7 @@ const Card = styled(Paper)`
     box-shadow: 0 12px 20px -10px rgba(244, 67, 54, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(244, 67, 54, 0.2);
 
     &:hover {
-      background-image: linear-gradient(25deg, #d4145a, #fbb03b);
-      box-shadow: 0 12px 20px -10px rgba(244, 67, 54, 0.48), 0 4px 20px 0px rgba(0, 0, 0, 0.22), 0 7px 8px -5px rgba(244, 67, 54, 0.4);
+      box-shadow: 0 12px 20px -10px rgba(244, 67, 54, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(244, 67, 54, 0.2);
     }
   `}
 `
@@ -80,7 +80,7 @@ const Container = styled.div`
 
   overflow: scroll;
 
-  @media (max-height: ${sm}px) {
+  @media (max-width: ${sm}px) {
     max-height: 21em;
   }
 `
