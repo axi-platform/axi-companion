@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {observer} from 'mobx-react'
-import {observable} from 'mobx'
 
 import StoreMap from './StoreMap'
 import Nearby from './Nearby'
@@ -13,21 +12,26 @@ import noti from '../utils/noti'
 
 @observer
 export default class StoreLocator extends Component {
-  @observable nearby = []
+  componentDidMount() {
+    this.relocate()
 
-  async componentDidMount() {
-    // Set the current position, which is used as the center of the map.
+    window.relocate = this.relocate
+  }
+
+  relocate = async () => {
+    // Set the current position, which will set the center of the map.
     const {coords} = await getPosition()
-    store.position = [coords.latitude, coords.longitude]
+    store.setPosition([coords.latitude, coords.longitude])
 
-    console.log('Current Position is', store.position.toJS())
+    try {
+      // Set the default print store to the nearest one.
+      const devices = await getNearbyStores(store.position)
+      noti.success(`พบ ${devices.length} ร้านปริ้นท์ใกล้ตัวคุณ`)
 
-    // Set the default print store to the nearest one.
-    const devices = await getNearbyStores(store.position)
-    noti.success(`พบ ${devices.length} ร้านปริ้นท์ใกล้ตัวคุณ`)
-
-    this.nearby = devices
-    store.setStore(devices[0])
+      store.setStore(devices[0])
+    } catch (err) {
+      noti.error(err.message)
+    }
   }
 
   render() {
@@ -39,7 +43,7 @@ export default class StoreLocator extends Component {
 
           return (
             <div>
-              <Nearby data={this.nearby} />
+              <Nearby data={data} />
               <StoreMap data={data} />
             </div>
           )

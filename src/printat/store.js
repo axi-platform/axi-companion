@@ -8,6 +8,9 @@ class PrintStore {
   // The current position of the user
   @observable position = [13.74, 100.588]
 
+  // The center of the map
+  @observable center = [13.74, 100.588]
+
   // The current print shop the user is at
   @observable store = {}
 
@@ -15,19 +18,36 @@ class PrintStore {
   @observable tab = 'locator'
 
   @action
+  setPosition = position => {
+    this.center = position
+
+    // Also recenter the map when the position changes.
+    this.position = position
+  }
+
+  @action
   setStore = shop => {
+    // If the store if offline, notify the user.
     if (shop.presence === 'offline') {
-      noti.warn(`${shop.displayName} is currently unavailable.`)
+      noti.warn(`ร้าน ${shop.displayName} ไม่เปิดให้บริการในขณะนี้`)
       return
     }
 
+    // If the two stores are the same, don't do anything.
+    if (this.store.id === shop.id) return
+
+    // Set the store
     this.store = shop
 
+    // Set the center of the map to the store's position
     if (shop.latitude && shop.longitude) {
-      this.position = [shop.latitude, shop.longitude]
+      this.center = [shop.latitude, shop.longitude]
     }
 
-    noti.info(`เลือก ${shop.displayName} เป็นร้านปรินท์ปลายทางแล้ว`)
+    // Display the notification
+    if (shop.displayName) {
+      noti.info(`เลือก <b>${shop.displayName}</b> เป็นร้านปรินท์ปัจจุบันแล้ว`)
+    }
   }
 
   @action

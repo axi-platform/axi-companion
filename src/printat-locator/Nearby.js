@@ -6,6 +6,7 @@ import {observer} from 'mobx-react'
 import Paper from '../ui/Paper'
 import {sm} from '../ui/style'
 
+import haversine from '../utils/haversine'
 import store from '../printat/store'
 
 const Title = styled.div`
@@ -18,37 +19,60 @@ const Title = styled.div`
 // prettier-ignore
 const Card = styled(Paper)`
   position: relative;
-  padding: 1.1em 1.5em;
-  font-size: 1.15em;
   cursor: pointer;
 
+  min-width: 16em;
+  max-width: 20em;
+
+  padding: 0.95em 1em;
+  font-size: 1.05em;
+
+  box-shadow: 0 12px 20px -10px rgba(255, 255, 255, 0.38),
+    0 4px 20px 0px rgba(0, 0, 0, 0.12),
+    0 7px 8px -5px rgba(255, 255, 255, 0.2);
+
+  transition: all 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+
   &:hover {
-    box-shadow: 0 12px 20px -10px rgba(255, 255, 255, 0.28),
-      0 4px 20px 0px rgba(0, 0, 0, 0.12),
-      0 7px 8px -5px rgba(255, 255, 255, 0.2);
+    color: white;
+    background-color: #353e48;
+
+    box-shadow: rgba(0, 0, 0, 0.22) 0px 1px 6px, rgba(0, 0, 0, 0.22) 0px 1px 4px;
+  }
+
+  @media (max-width: ${sm}px) {
+    max-width: none;
   }
 
   ${props => props.selected && css`
+    font-size: 1.15em;
+    padding: 1.1em 1.5em;
+
     color: #ffffff;
-    background: #af2cc5;
+    background-color: #af2cc5;
+    background-image: linear-gradient(45deg, #662d8c, #ed1e79);
     box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
 
     &:hover {
-      box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.38), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
+      box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.48), 0 4px 20px 0px rgba(0, 0, 0, 0.22), 0 7px 8px -5px rgba(156, 39, 176, 0.3);
     }
   `}
 `
 
 const Container = styled.div`
   position: absolute;
-  width: 100%;
   z-index: 1;
+  width: 100%;
 
   margin: 0 auto;
   margin-top: 1.5em;
+  padding: 0 1em;
 
-  padding: 0 2em;
-  max-width: 1000px;
+  overflow: scroll;
+
+  @media (max-height: ${sm}px) {
+    max-height: 21em;
+  }
 `
 
 const Grid = styled.div`
@@ -58,7 +82,8 @@ const Grid = styled.div`
   width: 100%;
 
   > div {
-    margin-right: 1.8em;
+    margin-left: 0.9em;
+    margin-right: 0.9em;
     margin-bottom: 1.8em;
     width: 100%;
   }
@@ -68,34 +93,55 @@ const Grid = styled.div`
     align-items: flex-start;
 
     > div {
+      margin-left: 0;
       margin-right: 0;
     }
   }
 `
 
-function distance(meter) {
+function getDistanceLabel(meter) {
   if (meter > 1000) {
-    return `${(meter / 1000).toFixed(2)} กิโล`
+    return (
+      <span>
+        <b>{(meter / 1000).toFixed(2)}</b> กม.
+      </span>
+    )
   }
 
-  return `${Math.round(meter)} เมตร`
+  return (
+    <span>
+      <b>{Math.round(meter)}</b> เมตร
+    </span>
+  )
 }
 
-const Nearby = ({data = []}) => (
-  <Container>
-    <Grid>
-      {data.map(shop => (
-        <Card
-          key={shop.id}
-          onClick={() => store.setStore(shop)}
-          selected={store.store.name === shop.name}>
-          <Title>{shop.displayName}</Title>
-          <div>ระยะทาง {distance(shop.distance)}</div>
-          <Ink opacity={0.1} />
-        </Card>
-      ))}
-    </Grid>
-  </Container>
-)
+const Nearby = ({data = []}) => {
+  const [latitude, longitude] = store.position
+
+  data = data
+    .filter(shop => shop.presence === 'online')
+    .map(shop => ({
+      ...shop,
+      distance: haversine({latitude, longitude}, shop),
+    }))
+    .sort((x, y) => x.distance - y.distance)
+
+  return (
+    <Container>
+      <Grid>
+        {data.map(shop => (
+          <Card
+            key={shop.id}
+            onClick={() => store.setStore(shop)}
+            selected={store.store.name === shop.name}>
+            <Title>{shop.displayName}</Title>
+            <div>ระยะทาง {getDistanceLabel(shop.distance)} เหลือ 15 คิว</div>
+            <Ink opacity={0.1} />
+          </Card>
+        ))}
+      </Grid>
+    </Container>
+  )
+}
 
 export default observer(Nearby)

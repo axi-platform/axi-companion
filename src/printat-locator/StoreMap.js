@@ -15,7 +15,13 @@ const MapContainer = styled.div`
 
 const StoreMap = ({data}) => (
   <MapContainer>
-    <Map center={store.position} pins={data} onMarkerClick={store.setStore} />
+    <Map
+      center={store.center}
+      current={store.position}
+      selected={store.store.id}
+      pins={data}
+      onMarkerClick={store.setStore}
+    />
   </MapContainer>
 )
 

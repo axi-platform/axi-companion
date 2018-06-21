@@ -1,7 +1,7 @@
 import React from 'react'
 import GoogleMap from 'google-map-react'
 
-import Pin from './Pin'
+import Pin, {CurrentPos} from './Pin'
 
 import {NaturalMap} from './style'
 
@@ -22,10 +22,11 @@ const config = {
   }),
 }
 
-const Map = ({pins = [], center, onMarkerClick}) => {
+const Map = ({pins = [], current, center, selected, onMarkerClick}) => {
   pins = pins.map(x => ({
     lat: x.latitude,
     lng: x.longitude,
+    selected: x.id === selected,
     ...x,
   }))
 
@@ -35,6 +36,8 @@ const Map = ({pins = [], center, onMarkerClick}) => {
         pins.map((pin, i) => (
           <Pin key={i} onClick={() => onMarkerClick(pin)} {...pin} />
         ))}
+
+      {current && <CurrentPos lat={current[0]} lng={current[1]} />}
     </GoogleMap>
   )
 }

@@ -23,13 +23,22 @@ export const peakHoverColor = '#c0392b'
 export const unavailableColor = '#9E9E9E'
 export const unavailableHoverColor = '#616161'
 
+// Indicate that the device is currently selected
+// #af2cc5 #673ab7
+export const selectedColor = 'linear-gradient(5deg, #662d8c, #ed1e79)'
+export const selectedHoverColor = 'linear-gradient(60deg, #662d8c, #ed1e79)'
+
 const getPinColor = props => {
+  if (props.selected) return selectedColor
+
   if (props.presence === 'offline') return unavailableColor
 
   return availableColor
 }
 
 const getPinHoverColor = props => {
+  if (props.selected) return selectedHoverColor
+
   if (props.presence === 'offline') return unavailableHoverColor
 
   return availableHoverColor
@@ -120,6 +129,7 @@ export const PinEffect = styled.div`
   transform: rotateX(55deg);
   width: 14px;
   z-index: -2;
+
   &::after {
     animation-delay: 1.1s;
     animation: ${pulsate} 1s ease-out infinite;
@@ -134,16 +144,24 @@ export const PinEffect = styled.div`
   }
 `
 
+export const CurrentPos = styled(PinEffect)`
+  background: none;
+
+  &::after {
+    box-shadow: 0 0 1px 2px ${peakColor};
+  }
+`
+
 // Adjust marker position to align with the polyline
 const PinContainer = styled.div`
   transform: translate(5px, -18px);
   z-index: 1;
 `
 
-const Pin = ({name, presence, onClick}) => (
+const Pin = ({onClick, ...props}) => (
   <PinContainer onClick={onClick}>
-    <PinItem name={name} presence={presence} />
-    {presence === 'online' && <PinEffect name={name} presence={presence} />}
+    <PinItem {...props} />
+    {props.presence === 'online' && <PinEffect {...props} />}
   </PinContainer>
 )
 
