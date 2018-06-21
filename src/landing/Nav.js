@@ -11,7 +11,7 @@ import {
   largeScreen,
   smallScreen,
   extraSmallScreen,
-} from '../utils/style'
+} from '../ui/style'
 
 import logo from '../../assets/logo.svg'
 

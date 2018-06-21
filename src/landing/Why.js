@@ -4,7 +4,7 @@ import {css} from 'emotion'
 
 import {Break, BreakMedium, DecoImage, More, landingColor} from './Layout'
 
-import {mediumScreen, smallScreen, extraSmallScreen} from '../utils/style'
+import {mediumScreen, smallScreen, extraSmallScreen} from '../ui/style'
 
 import gamechars from '../../assets/gamechars.svg'
 import isomac from '../../assets/isomac.svg'

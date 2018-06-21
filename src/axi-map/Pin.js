@@ -72,7 +72,7 @@ const bounce = keyframes`
   }
 `
 
-const PinItem = styled.div`
+export const PinItem = styled.div`
   height: 30px;
   transform: rotate(-45deg);
   border-radius: 50% 50% 50% 0;
@@ -109,7 +109,7 @@ const PinItem = styled.div`
   }
 `
 
-const PinEffect = styled.div`
+export const PinEffect = styled.div`
   background: rgba(0, 0, 0, 0.2);
   border-radius: 50%;
   height: 14px;

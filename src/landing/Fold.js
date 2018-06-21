@@ -9,7 +9,7 @@ import heroImage from '../../assets/hero.svg'
 
 import {Break, More} from './Layout'
 
-import {mediumScreen, extraSmallScreen} from '../utils/style'
+import {mediumScreen, extraSmallScreen} from '../ui/style'
 
 export const FoldSection = styled.section`
   position: relative;

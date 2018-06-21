@@ -3,7 +3,7 @@ import styled from 'react-emotion'
 import {Link} from 'react-static'
 
 import {DecoImage, landingColor} from './Layout'
-import {smallScreen} from '../utils/style'
+import {smallScreen} from '../ui/style'
 
 export const containerWidth = '980px'
 

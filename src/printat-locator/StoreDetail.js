@@ -4,6 +4,8 @@ import styled from 'react-emotion'
 import Button from '../ui/Button'
 import Paper from '../ui/Paper'
 
+import {sm} from '../ui/style'
+
 const Heading = styled.h1`
   margin: 0;
   margin-bottom: 0.35em;
@@ -13,6 +15,11 @@ const Heading = styled.h1`
   font-size: 1.5em;
   line-height: 1.8em;
   text-align: right;
+
+  @media (max-width: ${sm}px) {
+    text-align: right;
+    font-size: 1.18em;
+  }
 `
 
 const SubHeading = styled.h2`
@@ -59,7 +66,7 @@ const StoreStatus = ({store}) => {
   return (
     <div>
       <Heading>
-        Selected <Strong>{displayName}</Strong> as destination.
+        Printing at <Strong>{displayName}</Strong>.
       </Heading>
 
       <SubHeading primary={isOnline} />

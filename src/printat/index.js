@@ -13,7 +13,7 @@ const Dashboard = props => (
     <Nav />
 
     <Tab name="locator" component={Locator} />
-    <Tab name="component" component={Document} />
+    <Tab name="document" component={Document} />
     <Tab name="queue" component={Queue} />
 
     <BottomNav />

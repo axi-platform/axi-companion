@@ -2,8 +2,6 @@ import React from 'react'
 import {observer} from 'mobx-react'
 import styled from 'react-emotion'
 
-import StoreDetail from './StoreDetail'
-
 import Map from '../axi-map'
 import store from '../printat/store'
 
@@ -16,13 +14,9 @@ const MapContainer = styled.div`
 `
 
 const StoreMap = ({data}) => (
-  <div>
-    <StoreDetail selected={store.store} onConfirm={store.proceed} />
-
-    <MapContainer>
-      <Map center={store.position} pins={data} onMarkerClick={store.setStore} />
-    </MapContainer>
-  </div>
+  <MapContainer>
+    <Map center={store.position} pins={data} onMarkerClick={store.setStore} />
+  </MapContainer>
 )
 
 export default observer(StoreMap)

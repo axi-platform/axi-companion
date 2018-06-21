@@ -4,7 +4,7 @@ import {Link} from 'react-static'
 
 import Icon from '../ui/Icon'
 
-import {smallScreen, mediumScreen} from '../utils/style'
+import {smallScreen, mediumScreen} from '../ui/style'
 
 export const landingColor = 'hsl(264, 46%, 41%)'
 export const subColor = '#757575'

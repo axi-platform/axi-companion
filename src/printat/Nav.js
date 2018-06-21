@@ -2,6 +2,9 @@ import React from 'react'
 import styled from 'react-emotion'
 import {Link} from 'react-static'
 
+import Icon from '../ui/Icon'
+import {sm} from '../ui/style'
+
 import pwLogo from '../../assets/pw_logo.svg'
 
 const Logo = styled.img`
@@ -20,7 +23,10 @@ const Logo = styled.img`
 const NavContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+
+  position: relative;
+  z-index: 2;
 
   width: 100%;
   height: 3.5em;
@@ -28,19 +34,28 @@ const NavContainer = styled.div`
   color: #efefef;
   background: #353e48;
 
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 3;
-
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+`
+
+const Left = styled.div`
+  padding-left: 1.5em;
+`
+
+const Right = styled.div`
+  padding-right: 1.5em;
 `
 
 const Nav = () => (
   <NavContainer>
+    <Left>
+      <Icon i="pin" />
+    </Left>
     <Link to="/printat">
       <Logo src={pwLogo} />
     </Link>
+    <Right>
+      <Icon i="pin" />
+    </Right>
   </NavContainer>
 )
 
