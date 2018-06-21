@@ -44,11 +44,11 @@ const Container = styled(Paper)`
   box-shadow: 0 1px 1.5px 1px rgba(0, 0, 0, 0.12);
 `
 
-const StationStatus = ({station}) => {
-  const {id, displayName, presence, queue} = station
+const StoreStatus = ({store}) => {
+  const {id, displayName, presence, queue} = store
   const isOnline = presence === 'online'
 
-  if (!station || !id) {
+  if (!store || !id) {
     return (
       <Heading>
         Please select a <Strong>Print Shop</Strong> to print to.
@@ -62,21 +62,18 @@ const StationStatus = ({station}) => {
         Selected <Strong>{displayName}</Strong> as destination.
       </Heading>
 
-      <SubHeading primary={isOnline}>
-        {isOnline && <span>{queue} Queues</span>}
-        {/* <span>{presence}</span> */}
-      </SubHeading>
+      <SubHeading primary={isOnline} />
     </div>
   )
 }
 
-const StationDetail = ({selected, onConfirm}) => {
+const StoreDetail = ({selected, onConfirm}) => {
   const {presence = 'unavailable'} = selected
   const isOnline = presence === 'online'
 
   return (
     <Container>
-      <StationStatus station={selected} />
+      <StoreStatus store={selected} />
 
       <Button onClick={onConfirm} disabled={!isOnline} primary>
         {isOnline ? 'Proceed' : 'Print Shop is Unavailable.'}
@@ -85,4 +82,4 @@ const StationDetail = ({selected, onConfirm}) => {
   )
 }
 
-export default StationDetail
+export default StoreDetail

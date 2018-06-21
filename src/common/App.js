@@ -23,9 +23,7 @@ injectGlobal`
   }
 `
 
-hot(module)
-
-export default class App extends Component {
+class App extends Component {
   render() {
     return (
       <ApolloProvider client={client}>
@@ -36,3 +34,5 @@ export default class App extends Component {
     )
   }
 }
+
+export default hot(module)(App)

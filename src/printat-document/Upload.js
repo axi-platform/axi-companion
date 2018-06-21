@@ -24,7 +24,7 @@ import s from "./Document.scss"
   lastModifiedEpoch: local.lastModified
 */
 
-const DocumentUpload = ({station, proceed, current, files, ...opts}) => (
+const DocumentUpload = ({store, proceed, current, files, ...opts}) => (
   <div>
     <Grid style={{paddingTop: "5.5em"}} c>
       <Grid className={s.bottom} r>
@@ -33,7 +33,7 @@ const DocumentUpload = ({station, proceed, current, files, ...opts}) => (
             <h2 className={s.heading}>
               Printing at
               <span className={s.text}>
-                &nbsp;{station && station.name}
+                &nbsp;{store && store.name}
               </span>
             </h2>
             <Button onClick={proceed} disabled={files.length <= 0} base light>
@@ -58,7 +58,7 @@ const DocumentUpload = ({station, proceed, current, files, ...opts}) => (
 )
 
 const mapStateToProps = state => ({
-  station: state.app.station,
+  store: state.app.store,
   files: state.files.list,
   current: state.files.current || 0
 })
@@ -67,12 +67,12 @@ const mergeProps = (state, {dispatch}, props) => ({
   ...props,
   ...state,
   proceed: () => {
-    const station = state.station
+    const store = state.store
     const files = state.files || []
 
-    if (station && files.length > 0) {
+    if (store && files.length > 0) {
       dispatch(setUi("section", 2))
-    } else if (!station) {
+    } else if (!store) {
       dispatch(setUi("section", 0))
       dispatch(notify("Please select a Printer first.", "error"))
     } else if (!files || files.length === 0) {

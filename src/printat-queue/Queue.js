@@ -25,19 +25,19 @@ export const Info = withStyles(s)(queue => (
   </div>
 ))
 
-export const Summary = withStyles(s)(({station, files}) => (
+export const Summary = withStyles(s)(({store, files}) => (
   <Paper title="Printing Summary">
     <h3 className={s.title}>
-      {station ? (
+      {store ? (
         <span>
           Printing At&nbsp;
           <span className={s.text}>
-            {station.name}
+            {store.name}
           </span>
         </span>
       ) : (
         <span className={s.text}>
-          Please select a Print Station first.
+          Please select a Print Store first.
         </span>
       )}
     </h3>
@@ -67,7 +67,7 @@ export const NotReady = withStyles(s)(({s1, s2}) => (
       Please complete the following steps first.
     </h2>
     <h3 className={s.heading}>
-      {!s1 && <span>- Select a Station <br /></span>}
+      {!s1 && <span>- Select a Store <br /></span>}
       {!s2 && <span>- Upload your Documents</span>}
     </h3>
     <div>
@@ -95,12 +95,12 @@ export const Success = withStyles(s)(({queue = {}, reset}) => (
   </div>
 ))
 
-export default ({enqueue, clear, cancel, queue, success, files, station, reset}) => {
+export default ({enqueue, clear, cancel, queue, success, files, store, reset}) => {
   if (success)
     return <Success reset={reset} queue={queue} />
   if (queue)
-    return <Info cancel={() => cancel(queue.id, station._id)} {...queue} />
-  if (files.length > 0 && station)
+    return <Info cancel={() => cancel(queue.id, store._id)} {...queue} />
+  if (files.length > 0 && store)
     return <Ready enqueue={enqueue} clear={clear} />
-  return <NotReady s1={station} s2={files.length > 0} />
+  return <NotReady s1={store} s2={files.length > 0} />
 }

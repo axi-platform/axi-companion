@@ -79,13 +79,18 @@ const PinItem = styled.div`
   background: ${getPinColor};
   animation: ${bounce} 1s ease;
   cursor: pointer;
-  left: 50%;
   margin: -20px 0 0 -20px;
+
   position: absolute;
+  left: 50%;
   top: 50%;
   width: 30px;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+
+  opacity: ${props => (props.presence === 'offline' ? 0.7 : 1)};
+
   transition: 1s cubic-bezier(0.22, 0.61, 0.36, 1) all;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+
   &::after {
     background: white;
     border-radius: 50%;
@@ -97,6 +102,7 @@ const PinItem = styled.div`
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
       0 2px 10px 0 rgba(0, 0, 0, 0.12);
   }
+
   &:hover {
     background: ${getPinHoverColor};
     transform: rotate(-45deg) scale(1.3);

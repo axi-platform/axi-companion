@@ -8,13 +8,13 @@ import Grid from "../../Grid"
 import Queue, {Summary} from "./Queue"
 
 import app, {services} from "../../../client/api"
-import {notify, setStation, setUi} from "../../../ducks/app"
+import {notify, setStore, setUi} from "../../../ducks/app"
 import {clearFiles} from "../../../ducks/files"
 
 import s from "./PrintQueue.scss"
 
 const mapStateToProps = state => ({
-  station: state.app.station,
+  store: state.app.store,
   files: state.files.list || [],
   queue: state.print.data,
   success: state.app.ui.success || false
@@ -25,7 +25,7 @@ const mergeProps = (state, {dispatch}, props) => ({
   ...state,
   enqueue: () => {
     dispatch(services.print.create({
-      station: state.station._id,
+      store: state.store._id,
       files: state.files
     })).then(queue => {
       console.info("Enqueued", queue)
@@ -48,7 +48,7 @@ const mergeProps = (state, {dispatch}, props) => ({
   clear: () => {
     dispatch(services.print.reset(true))
     dispatch(setUi("section", 0))
-    dispatch(setStation(null))
+    dispatch(setStore(null))
     dispatch(clearFiles())
     dispatch(notify("Operation Canceled. See you next time!"))
   },
@@ -67,7 +67,7 @@ const mergeProps = (state, {dispatch}, props) => ({
     dispatch(setUi("success", false))
     dispatch(setUi("section", 0))
     dispatch(clearFiles())
-    dispatch(setStation(null))
+    dispatch(setStore(null))
   },
   notify: msg => dispatch(notify(msg))
 })
@@ -78,7 +78,7 @@ export default class PrintQueue extends Component {
 
   componentDidMount = () => {
     app.service("print").on("printing", e => {
-      if (this.props.station._id === e.device && this.props.queue.id === e.id) {
+      if (this.props.store._id === e.device && this.props.queue.id === e.id) {
         this.props.notify(`Currently Printing...`)
         console.log("PRINTING", e)
       }
@@ -89,13 +89,13 @@ export default class PrintQueue extends Component {
     })
 
     app.service("print").on("failed", e => {
-      if (this.props.station._id === e.device && this.props.queue.id === e.id) {
+      if (this.props.store._id === e.device && this.props.queue.id === e.id) {
         this.props.handleFailure(e)
       }
     })
 
     app.service("print").on("success", e => {
-      if (this.props.station._id === e.device && this.props.queue.id === e.id) {
+      if (this.props.store._id === e.device && this.props.queue.id === e.id) {
         this.props.handleSuccess(e)
       }
     })
@@ -116,7 +116,7 @@ export default class PrintQueue extends Component {
             <Paper style={{marginBottom: "1.5em"}} title="Queue Information">
               <Queue {...this.props} />
             </Paper>
-            <Summary station={this.props.station} files={this.props.files} />
+            <Summary store={this.props.store} files={this.props.files} />
           </div>
         </Grid>
         <Grid xs={12} sm={6}>

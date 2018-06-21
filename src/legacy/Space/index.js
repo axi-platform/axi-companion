@@ -60,7 +60,7 @@ const plans = [{
 const checkIn = () => {
   app.service("command").create({
     project: "printat",
-    device: "58c9fc5294546a0062436469", // this.props.station._id ||
+    device: "58c9fc5294546a0062436469", // this.props.store._id ||
     topic: "control",
     command: "9"
   })

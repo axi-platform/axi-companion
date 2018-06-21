@@ -18,13 +18,13 @@ import {Devices, Heading, StatHeading} from "./Comps"
 import QueueViewer from "./QueueViewer"
 
 import app, {services} from "../../client/api"
-import {notify, setStation} from "../../ducks/app"
+import {notify, setStore} from "../../ducks/app"
 
 import s from "./Dashboard.scss"
 
 const mapStateToProps = state => ({
   devices: state.devices.queryResult || {},
-  station: state.app.station || {}
+  store: state.app.store || {}
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -34,9 +34,9 @@ const mapDispatchToProps = dispatch => ({
       dispatch(notify(`Removed Device: ${value.name}`))
     })
   },
-  setStation: (device = {}) => {
-    dispatch(setStation(device))
-    dispatch(notify(`Setting Print Station to ${device.name}.`))
+  setStore: (device = {}) => {
+    dispatch(setStore(device))
+    dispatch(notify(`Setting Print Store to ${device.name}.`))
   }
 })
 
@@ -65,10 +65,10 @@ class DeviceMgr extends Component {
         <Grid xs={12} sm={6} md={5}>
           <div className={s.map}>
             <div className={s.title}>
-              <Icon i="search" /> Device Maps. {this.props.station.name || "None"} is selected.
+              <Icon i="search" /> Device Maps. {this.props.store.name || "None"} is selected.
             </div>
             <div className={s.inner}>
-              <Maps pins={devices} onMarkerClick={this.props.setStation} />
+              <Maps pins={devices} onMarkerClick={this.props.setStore} />
             </div>
           </div>
         </Grid>
@@ -77,7 +77,7 @@ class DeviceMgr extends Component {
   }
 }
 
-@connect(state => ({station: state.app.station || {_id: "<SELECT A DEVICE>"}}))
+@connect(state => ({store: state.app.store || {_id: "<SELECT A DEVICE>"}}))
 class CommandForm extends Component {
   constructor(props) {
     super(props)
@@ -89,7 +89,7 @@ class CommandForm extends Component {
   }
 
   dispatch = () => {
-    const device = this.state.global ? {} : {device: this.props.station._id}
+    const device = this.state.global ? {} : {device: this.props.store._id}
     app.service("command").create({
       project: "printat",
       topic: this.state.topic,
@@ -113,7 +113,7 @@ class CommandForm extends Component {
       <td>
         <span>printat/</span>
         {!this.state.global && (
-          <span>{this.props.station._id}/</span>
+          <span>{this.props.store._id}/</span>
         )}
         <input
           className={s.topic}

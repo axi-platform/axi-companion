@@ -1,12 +1,18 @@
 import {action, observable} from 'mobx'
 
 class PrintStore {
-  @observable station = {}
+  // The current position of the user
+  @observable position = [13.74, 100.588]
+
+  // The current print shop the user is at
+  @observable store = {}
+
+  // The current tab of the interface
   @observable tab = 'locator'
 
   @action
-  setStation = station => {
-    this.station = station
+  setStore = store => {
+    this.store = store
   }
 
   @action

@@ -9,8 +9,8 @@ export const getPosition = () =>
     navigator.geolocation.getCurrentPosition(resolve, reject)
   })
 
-// Retrieve the print stations near you.
-export async function getNearbyStations([lat, lon]) {
+// Retrieve the print stores near you.
+export async function getNearbyStores([lat, lon]) {
   const nearby = app.service('devices/nearby')
 
   // Query the nearby print device

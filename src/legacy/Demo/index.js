@@ -13,7 +13,7 @@ import s from "./Demo.scss"
 const cmds = [[1, 2], [3, 4], [5, 6], [7, 8]]
 
 @withStyles(s)
-@connect(state => ({station: state.app.station || {}}))
+@connect(state => ({store: state.app.store || {}}))
 export default class Demo extends Component {
   constructor(props) {
     super(props)
@@ -23,7 +23,7 @@ export default class Demo extends Component {
   set = cmd => {
     app.service("command").create({
       project: "printat",
-      device: "58c9fc5294546a0062436469", // this.props.station._id ||
+      device: "58c9fc5294546a0062436469", // this.props.store._id ||
       topic: "control",
       command: cmd.toString()
     })
@@ -45,7 +45,7 @@ export default class Demo extends Component {
     <div>
       <Navbar />
       <div className={s.root}>
-        <h2>Serial Demo for {this.props.station.name}</h2>
+        <h2>Serial Demo for {this.props.store.name}</h2>
         <Grid r>
           {[...Array(4)].map((e, i) => (
             <Grid xs={4} md={2} key={i}>

@@ -17,7 +17,7 @@ const mapStateToProps = state => ({
   user: state.user || {},
   queue: state.queue.queryResult || {},
   data: state.queue.data,
-  station: state.app.station || {}
+  store: state.app.store || {}
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -62,7 +62,7 @@ export default class QueueViewer extends Component {
 
   onGetQueue = ev => {
     if (ev.key === "Enter")
-      this.props.getQueue(ev.target.value, this.props.station._id)
+      this.props.getQueue(ev.target.value, this.props.store._id)
   }
 
   render = () => (
@@ -74,13 +74,13 @@ export default class QueueViewer extends Component {
           </h3>
           <br />
           <h4 className={s.heading}>
-            Device: {this.props.station.name}
+            Device: {this.props.store.name}
           </h4>
           <h5 className={s.sub}>
-            ID: {this.props.station._id}
+            ID: {this.props.store._id}
           </h5>
           <br />
-          <Button onClick={() => this.props.fetchQueues(this.props.station._id)} base light>
+          <Button onClick={() => this.props.fetchQueues(this.props.store._id)} base light>
             Fetch
           </Button>
         </Paper>
