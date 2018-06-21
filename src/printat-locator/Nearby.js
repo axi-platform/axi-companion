@@ -24,6 +24,8 @@ const Card = styled(Paper)`
   min-width: 16em;
   max-width: 20em;
 
+  user-select: none;
+
   padding: 0.95em 1em;
   font-size: 1.05em;
 
@@ -32,6 +34,7 @@ const Card = styled(Paper)`
     0 7px 8px -5px rgba(255, 255, 255, 0.2);
 
   transition: all 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+  -webkit-tap-highlight-color: transparent;
 
   &:hover {
     color: white;
@@ -49,15 +52,22 @@ const Card = styled(Paper)`
     padding: 1.1em 1.5em;
 
     color: #ffffff;
-    background-color: #af2cc5;
-    background-image: linear-gradient(45deg, #662d8c, #ed1e79);
-    box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
+    background-color: #f55a4e;
+    background-image: linear-gradient(45deg, #d4145a, #fbb03b);
+    box-shadow: 0 12px 20px -10px rgba(244, 67, 54, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(244, 67, 54, 0.2);
 
     &:hover {
-      box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.48), 0 4px 20px 0px rgba(0, 0, 0, 0.22), 0 7px 8px -5px rgba(156, 39, 176, 0.3);
+      background-image: linear-gradient(25deg, #d4145a, #fbb03b);
+      box-shadow: 0 12px 20px -10px rgba(244, 67, 54, 0.48), 0 4px 20px 0px rgba(0, 0, 0, 0.22), 0 7px 8px -5px rgba(244, 67, 54, 0.4);
     }
   `}
 `
+
+// HotelSuite CI
+// background-color: #af2cc5;
+// background-image: linear-gradient(45deg, #662d8c, #ed1e79);
+// box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.48), 0 4px 20px 0px rgba(0, 0, 0, 0.22), 0 7px 8px -5px rgba(156, 39, 176, 0.4);
+// box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
 
 const Container = styled.div`
   position: absolute;

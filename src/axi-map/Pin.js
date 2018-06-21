@@ -24,9 +24,13 @@ export const unavailableColor = '#9E9E9E'
 export const unavailableHoverColor = '#616161'
 
 // Indicate that the device is currently selected
+export const selectedColor = 'linear-gradient(60deg, #d4145a, #fbb03b)'
+export const selectedHoverColor = 'linear-gradient(5deg, #d4145a, #fbb03b)'
+
+// HotelSuite CI
 // #af2cc5 #673ab7
-export const selectedColor = 'linear-gradient(5deg, #662d8c, #ed1e79)'
-export const selectedHoverColor = 'linear-gradient(60deg, #662d8c, #ed1e79)'
+// export const selectedColor = 'linear-gradient(5deg, #662d8c, #ed1e79)'
+// export const selectedHoverColor = 'linear-gradient(60deg, #662d8c, #ed1e79)'
 
 const getPinColor = props => {
   if (props.selected) return selectedColor

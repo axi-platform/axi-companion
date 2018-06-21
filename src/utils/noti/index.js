@@ -6,7 +6,7 @@ import './noti.theme.css'
 export function notify(text, options = {}) {
   const noty = new Noty({
     theme: 'axi',
-    layout: 'topRight',
+    layout: 'bottomRight',
     text,
     progressBar: true,
     closeWith: ['click'],
