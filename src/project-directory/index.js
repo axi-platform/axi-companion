@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import styled from 'react-emotion'
 
 import Directory from './Directory'
@@ -15,7 +15,7 @@ const Container = styled.div`
 `
 
 const ProjectDirectory = () => (
-  <div>
+  <Fragment>
     <Toolbar title="Dashboard" />
     <Container>
       <Query service="projects">
@@ -27,7 +27,7 @@ const ProjectDirectory = () => (
         }}
       </Query>
     </Container>
-  </div>
+  </Fragment>
 )
 
 export default ProjectDirectory

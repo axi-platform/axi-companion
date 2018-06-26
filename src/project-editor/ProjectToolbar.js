@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import styled from 'react-emotion'
 import {observer} from 'mobx-react'
 
@@ -67,7 +67,7 @@ const MobileTab = styled.div`
 const tabs = ['overview', 'services', 'devices']
 
 const ProjectToolbar = ({data}) => (
-  <div>
+  <Fragment>
     <Toolbar
       color={data.color || colorize(data.name)}
       left={
@@ -98,7 +98,7 @@ const ProjectToolbar = ({data}) => (
         go={store.setTab}
       />
     </MobileTab>
-  </div>
+  </Fragment>
 )
 
 export default observer(ProjectToolbar)

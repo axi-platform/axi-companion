@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import styled from 'react-emotion'
 import {Route, Redirect} from 'react-static'
 
@@ -56,14 +56,14 @@ const Project = props => {
         if (error) return <div>Error: {error.message}</div>
 
         return (
-          <div>
+          <Fragment>
             <ProjectToolbar data={data} />
 
             <RedirectIf match="/project/:id" to={`/project/${id}/overview`} />
             <Route path="/project/:id/overview" component={Overview} />
             <Route path="/project/:id/services" component={Services} />
             <Route path="/project/:id/devices" component={Devices} />
-          </div>
+          </Fragment>
         )
       }}
     </Query>
