@@ -182,11 +182,6 @@ const Fold = () => (
             <Break stop={768} />
             with Axi Platform
           </Typist>
-          <Typist>
-            Allahu Akbar Snackbar&nbsp;
-            <Break stop={768} />
-            Boom, Boom!
-          </Typist>
         </TypistLoop>
       </Heading>
       <SubHeading>

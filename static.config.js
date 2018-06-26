@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {extractCritical} from 'emotion-server'
 
+import webpack from './webpack.config.js'
+
 const siteRoot = 'https://axiplatform.com'
 
 class Document extends Component {
@@ -29,6 +31,8 @@ class Document extends Component {
 
 export default {
   siteRoot,
+  webpack,
+  Document,
   getRoutes: async () => [
     {
       path: '/',
@@ -56,5 +60,4 @@ export default {
     meta.css = extractCritical(html).css
     return html
   },
-  Document,
 }

@@ -5,6 +5,10 @@ import App from './common/App'
 
 import 'normalize.css'
 
+if (typeof window !== 'undefined') {
+  require('offline-plugin/runtime').install()
+}
+
 if (typeof document !== 'undefined') {
   const renderMethod = module.hot
     ? ReactDOM.render

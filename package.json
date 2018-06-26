@@ -49,9 +49,11 @@
     "react-loading-skeleton": "^0.5.0",
     "react-particles-js": "^2.2.0",
     "react-router": "^4.2.0",
+    "react-router-dom": "^4.3.1",
     "react-static": "^5.9.1",
     "react-typist": "^2.0.4",
     "react-typist-loop": "^0.0.5",
+    "react-universal-component": "^2.9.0",
     "recompose": "^0.27.0",
     "rxjs": "^6.2.1",
     "sift": "^5.1.0",
@@ -72,7 +74,10 @@
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-react": "^7.7.0",
     "eslint-plugin-standard": "^3.1.0",
+    "offline-plugin": "^5.0.5",
     "prettier": "^1.12.1",
-    "serve": "^6.1.0"
+    "serve": "^6.1.0",
+    "uglifyjs-webpack-plugin": "^1.2.7",
+    "webpack-pwa-manifest": "^3.6.2"
   }
 }

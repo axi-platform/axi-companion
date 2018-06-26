@@ -123,27 +123,33 @@ function getDistanceLabel(meter) {
   )
 }
 
+const withDistance = coordinate => shop => ({
+  ...shop,
+  distance: haversine(coordinate, shop),
+})
+
+const sortByDistance = (x, y) => x.distance - y.distance
+
 const Nearby = ({data = []}) => {
   const [latitude, longitude] = store.position
 
-  data = data
+  const shops = data
     .filter(shop => shop.presence === 'online')
-    .map(shop => ({
-      ...shop,
-      distance: haversine({latitude, longitude}, shop),
-    }))
-    .sort((x, y) => x.distance - y.distance)
+    .map(withDistance({latitude, longitude}))
+    .sort(sortByDistance)
 
   return (
     <Container>
       <Grid>
-        {data.map(shop => (
+        {shops.map(shop => (
           <Card
             key={shop.id}
             onClick={() => store.setStore(shop)}
             selected={store.store.name === shop.name}>
             <Title>{shop.displayName}</Title>
-            <div>ระยะทาง {getDistanceLabel(shop.distance)} เหลือ 15 คิว</div>
+            <div>
+              ระยะทาง {getDistanceLabel(shop.distance)} เหลือ {shop.queue} คิว
+            </div>
             <Ink opacity={0.1} />
           </Card>
         ))}
