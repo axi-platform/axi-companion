@@ -25,12 +25,14 @@ const manifest = {
 }
 
 export default function(config, {stage}) {
-  // prettier-ignore
-  const index = config.plugins.findIndex(x => x instanceof webpack.optimize.UglifyJsPlugin)
+  if (stage !== 'dev') {
+    // prettier-ignore
+    const index = config.plugins.findIndex(x => x instanceof webpack.optimize.UglifyJsPlugin)
 
-  // Fix UglifyJS build errors
-  config.plugins.splice(index, 1)
-  config.plugins.push(new UglifyJSPlugin())
+    // Fix UglifyJS build errors
+    config.plugins.splice(index, 1)
+    config.plugins.push(new UglifyJSPlugin())
+  }
 
   if (stage === 'prod') {
     config.plugins.push(new WebpackPwaManifest(manifest))
