@@ -60,4 +60,5 @@ export default {
     meta.css = extractCritical(html).css
     return html
   },
+  disableRouteInfoWarning: true,
 }

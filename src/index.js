@@ -5,7 +5,7 @@ import App from './common/App'
 
 import 'normalize.css'
 
-if (typeof window !== 'undefined') {
+if (process.env.NODE_ENV !== 'development' && typeof window !== 'undefined') {
   require('offline-plugin/runtime').install()
 }
 

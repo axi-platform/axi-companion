@@ -8,7 +8,9 @@ import project from '../project-editor/store'
 const stores = {routing, print, project}
 
 if (typeof window !== 'undefined') {
-  enableLogging()
+  if (process.env.NODE_ENV === 'development') {
+    enableLogging()
+  }
 
   window.stores = stores
 }
