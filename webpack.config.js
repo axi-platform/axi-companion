@@ -17,8 +17,8 @@ const manifest = {
   icons: [],
   orientation: 'portrait',
   start_url: '.',
-  inject: true,
-  ios: true,
+  inject: false,
+  ios: false,
   fingerprints: true,
   filename: 'manifest.json',
   // publicPath: null,
@@ -30,8 +30,10 @@ export default function(config, {stage}) {
     const index = config.plugins.findIndex(x => x instanceof webpack.optimize.UglifyJsPlugin)
 
     // Fix UglifyJS build errors
-    config.plugins.splice(index, 1)
-    config.plugins.push(new UglifyJSPlugin())
+    if (config.plugins[index]) {
+      config.plugins.splice(index, 1)
+      config.plugins.push(new UglifyJSPlugin())
+    }
   }
 
   if (stage === 'prod') {
@@ -39,5 +41,5 @@ export default function(config, {stage}) {
     config.plugins.push(new OfflinePlugin())
   }
 
-  return config
+  // return config
 }
