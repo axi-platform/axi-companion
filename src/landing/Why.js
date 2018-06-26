@@ -4,7 +4,7 @@ import {css} from 'emotion'
 
 import {Break, BreakMedium, DecoImage, More, landingColor} from './Layout'
 
-import {mediumScreen, smallScreen, extraSmallScreen} from '../ui/style'
+import {md, sm, xs} from '../ui/style'
 
 import gamechars from '../../assets/gamechars.svg'
 import isomac from '../../assets/isomac.svg'
@@ -12,7 +12,7 @@ import isomac from '../../assets/isomac.svg'
 const Row = styled.div`
   display: flex;
 
-  @media screen and (max-width: ${smallScreen}px) {
+  @media screen and (max-width: ${sm}px) {
     flex-direction: column;
   }
 `
@@ -23,7 +23,7 @@ const Col = styled.div`
   justify-content: center;
   position: relative;
 
-  @media screen and (min-width: ${smallScreen}px) {
+  @media screen and (min-width: ${sm}px) {
     flex: ${props => props.flex || 1};
     order: ${props => (props.right ? 1 : 0)};
   }
@@ -67,7 +67,7 @@ export const ReasonBox = styled.div`
   position: relative;
 
   > a {
-    @media screen and (max-width: ${smallScreen}px) {
+    @media screen and (max-width: ${sm}px) {
       justify-content: center;
     }
   }
@@ -100,15 +100,15 @@ export const ReasonBox = styled.div`
     } */};
     `}
 
-  @media screen and (max-width: ${mediumScreen}px) {
+  @media screen and (max-width: ${md}px) {
     padding: 2em 3em;
   }
 
-  @media screen and (max-width: ${smallScreen}px) {
+  @media screen and (max-width: ${sm}px) {
     text-align: center;
   }
 
-  @media screen and (max-width: ${extraSmallScreen}px) {
+  @media screen and (max-width: ${xs}px) {
     padding: 2em 2em;
   }
 `

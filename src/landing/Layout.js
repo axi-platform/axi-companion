@@ -4,12 +4,13 @@ import {Link} from 'react-static'
 
 import Icon from '../ui/Icon'
 
-import {smallScreen, mediumScreen} from '../ui/style'
+import {sm, md} from '../ui/style'
 
 export const landingColor = 'hsl(264, 46%, 41%)'
 export const subColor = '#757575'
 
 export const Page = styled.div`
+  width: 100%;
   font-weight: 300;
 `
 
@@ -43,7 +44,7 @@ export const DecoImage = styled.img`
   width: ${props => props.width || 50}%;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
 
-  @media screen and (max-width: ${smallScreen}px) {
+  @media screen and (max-width: ${sm}px) {
     width: ${props => props.sWidth || props.width || 50}%;
     margin-top: ${props => props.sTop || 1}em;
     margin-bottom: ${props => props.sBottom || 1}em;
@@ -51,13 +52,13 @@ export const DecoImage = styled.img`
 `
 
 export const Break = styled.br`
-  @media screen and (max-width: ${props => props.stop || smallScreen}px) {
+  @media screen and (max-width: ${props => props.stop || sm}px) {
     display: none;
   }
 `
 
 export const BreakMedium = styled.br`
-  @media screen and (max-width: ${mediumScreen}px) {
+  @media screen and (max-width: ${md}px) {
     display: none;
   }
 `

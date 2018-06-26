@@ -9,7 +9,7 @@ import heroImage from '../../assets/hero.svg'
 
 import {Break, More} from './Layout'
 
-import {mediumScreen, extraSmallScreen} from '../ui/style'
+import {md, xs} from '../ui/style'
 
 export const FoldSection = styled.section`
   position: relative;
@@ -27,11 +27,11 @@ export const Intro = styled.div`
   text-align: left;
   pointer-events: none;
 
-  @media screen and (max-width: ${mediumScreen}px) {
+  @media screen and (max-width: ${md}px) {
     top: 25%;
   }
 
-  @media screen and (max-width: ${extraSmallScreen}px) {
+  @media screen and (max-width: ${xs}px) {
     top: 20%;
   }
 `
@@ -56,11 +56,11 @@ export const Heading = styled.h1`
   font-size: 2.5em;
   font-weight: 300;
 
-  @media screen and (max-width: ${mediumScreen}px) {
+  @media screen and (max-width: ${md}px) {
     font-size: 2em;
   }
 
-  @media screen and (max-width: ${extraSmallScreen}px) {
+  @media screen and (max-width: ${xs}px) {
     font-size: 1.4em;
   }
 
@@ -81,11 +81,11 @@ export const SubHeading = styled.h2`
   line-height: 1.6em;
   font-weight: 300;
 
-  @media screen and (max-width: ${mediumScreen}px) {
+  @media screen and (max-width: ${md}px) {
     font-size: 1.05em;
   }
 
-  @media screen and (max-width: ${extraSmallScreen}px) {
+  @media screen and (max-width: ${xs}px) {
     font-size: 1em;
   }
 `

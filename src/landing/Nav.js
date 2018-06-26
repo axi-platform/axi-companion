@@ -8,9 +8,9 @@ import {landingColor} from './Layout'
 
 import {
   font,
-  largeScreen,
-  smallScreen,
-  extraSmallScreen,
+  lg,
+  sm,
+  xs,
 } from '../ui/style'
 
 import logo from '../../assets/logo.svg'
@@ -40,7 +40,7 @@ const Left = styled.div`
 const Center = styled.div`
   flex: 1;
 
-  @media screen and (max-width: ${largeScreen}px) {
+  @media screen and (max-width: ${lg}px) {
     display: none;
   }
 `
@@ -52,7 +52,7 @@ const Right = styled.div`
 
   margin-right: 3.5em;
 
-  @media screen and (max-width: ${extraSmallScreen}px) {
+  @media screen and (max-width: ${xs}px) {
     flex: 4;
   }
 `
@@ -72,7 +72,7 @@ const Menu = styled(Link)`
   color: white;
 
   ${Left} > & {
-    @media screen and (max-width: ${extraSmallScreen}px) {
+    @media screen and (max-width: ${xs}px) {
       display: none;
     }
   }
@@ -91,7 +91,7 @@ const Logo = styled.img`
   margin-left: 1em;
   margin-right: 1em;
 
-  @media screen and (max-width: ${smallScreen}px) {
+  @media screen and (max-width: ${sm}px) {
     width: 2.5em;
   }
 `

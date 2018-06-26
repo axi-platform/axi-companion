@@ -3,7 +3,7 @@ import styled from 'react-emotion'
 import {Link} from 'react-static'
 
 import {DecoImage, landingColor} from './Layout'
-import {smallScreen} from '../ui/style'
+import {sm} from '../ui/style'
 
 export const containerWidth = '980px'
 
@@ -11,7 +11,7 @@ export const Row = styled.div`
   display: flex;
   justify-content: center;
 
-  @media screen and (max-width: ${smallScreen}px) {
+  @media screen and (max-width: ${sm}px) {
     flex-direction: column;
   }
 `
