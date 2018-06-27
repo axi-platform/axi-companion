@@ -4,13 +4,16 @@ import DropZone from 'react-dropzone'
 import styled, {css} from 'react-emotion'
 import Ink from 'react-ink'
 import {observable} from 'mobx'
+import Noty from 'noty'
 
 import CircleIcon from './CircleIcon'
-
 import {humanFileSize} from './utils'
 
 import noti from '../utils/noti'
+import app from '../utils/feathers'
 import store from '../printat/store'
+
+Noty.setMaxVisible(1, 'upload')
 
 const maxSize = 80000000
 
@@ -65,16 +68,10 @@ export default class FileUploader extends Component {
     this.isDragging = false
 
     files.forEach(file => {
-      const size = humanFileSize(file.size)
-
-      noti.info(`Uploading <b>${file.name}</b> (${size})`)
-
       store.addFile(file)
       store.selectFile(file)
 
-      setTimeout(() => {
-        noti.success(`Uploaded <b>${file.name}</b> successfully.`)
-      }, 1000)
+      this.upload(file)
     })
   }
 
@@ -105,13 +102,49 @@ export default class FileUploader extends Component {
     )
   }
 
+  upload = file => {
+    const upload = app.service('upload')
+    const reader = new window.FileReader()
+
+    reader.onload = async () => {
+      try {
+        const res = await upload.create({uri: reader.result})
+        console.log('Upload Success', res)
+
+        noti.success(`อัพโหลดไฟล์ <b>${file.name}</b> เรียบร้อยแล้ว`, 1100, {
+          queue: 'upload',
+          killer: true,
+        })
+      } catch (err) {
+        console.error('Upload Error', err)
+
+        noti.error(
+          `การอัพโหลดไม่สำเร็จสำหรับไฟล์ <b>${file.name}</b>: ${err.message}`,
+          1100,
+          {queue: 'upload', killer: true},
+        )
+      }
+    }
+
+    reader.onprogress = e => {
+      const loaded = humanFileSize(e.loaded)
+      const total = humanFileSize(e.total)
+      const perc = (e.loaded / e.total * 100).toFixed(2)
+
+      if (e.lengthComputable) {
+        // prettier-ignore
+        noti.info(`กำลังอัพโหลด <b>${file.name}</b>: <b>${perc}%</b> (${loaded} จาก ${total})`, 1100, {queue: 'upload'})
+      }
+    }
+
+    reader.readAsDataURL(file)
+  }
+
   render() {
     const config = {
       onDropAccepted: this.onAccepted,
       onDropRejected: this.onRejected,
       onDragEnter: this.onDragEnter,
-      onDragStart: e => console.log('Start', e),
-      onDragOver: e => console.log('Over', e),
       onDragLeave: this.onDragLeave,
       activeClassName: draggingStyle,
       maxSize,

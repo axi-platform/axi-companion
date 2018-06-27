@@ -56,7 +56,11 @@ class PrintStore {
 
     // Display the notification
     if (shop.displayName) {
-      noti.info(`เลือก <b>${shop.displayName}</b> เป็นร้านปรินท์ปัจจุบันแล้ว`)
+      noti.info(
+        `เลือก <b>${shop.displayName}</b> เป็นร้านปรินท์ปัจจุบันแล้ว`,
+        1100,
+        {queue: 'printShop', killer: true},
+      )
     }
   }
 
@@ -67,7 +71,7 @@ class PrintStore {
     const currentTab = tabs.indexOf(this.tab)
 
     if (!this.store.name) {
-      noti.warning(`Please select a store first.`)
+      noti.warning('กรุณาเลือกร้านปรินท์ก่อนดำเนินการต่อ')
 
       return
     }
