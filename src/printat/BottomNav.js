@@ -8,17 +8,17 @@ import BottomNavigation from '../ui/BottomNavigation'
 const tabs = [
   {
     path: 'locator',
-    label: 'Print Shops',
+    label: 'ค้นหาร้าน',
     icon: 'pin',
   },
   {
     path: 'document',
-    label: 'Upload File',
+    label: 'อัพโหลดเอกสาร',
     icon: 'attach',
   },
   {
     path: 'queue',
-    label: 'Queue & Print',
+    label: 'สั่งปรินท์',
     icon: 'addSquare',
   },
 ]

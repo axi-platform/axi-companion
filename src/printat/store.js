@@ -17,6 +17,16 @@ class PrintStore {
   // The current tab of the interface
   @observable tab = 'locator'
 
+  // The files to be printed
+  @observable files = []
+
+  // The selected file to be previewed
+  @observable selectedFile = {}
+
+  @action addFile = file => this.files.push(file)
+
+  @action selectFile = file => (this.selectedFile = file)
+
   @action
   setPosition = position => {
     this.center = position
@@ -50,10 +60,7 @@ class PrintStore {
     }
   }
 
-  @action
-  setTab = tab => {
-    this.tab = tab
-  }
+  @action setTab = tab => (this.tab = tab)
 
   @action
   proceed = () => {

@@ -7115,6 +7115,10 @@ react-loading-skeleton@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/react-loading-skeleton/-/react-loading-skeleton-0.5.0.tgz#bbbb9db7255ac4712a81d1f6a6dadd47ee1ea5ab"
 
+react-medium-image-zoom@^3.0.12:
+  version "3.0.12"
+  resolved "https://registry.yarnpkg.com/react-medium-image-zoom/-/react-medium-image-zoom-3.0.12.tgz#8dfb779f098b96b095793000e0947b6aa92484d0"
+
 react-particles-js@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/react-particles-js/-/react-particles-js-2.2.0.tgz#a95b994d9f781e7b498b5dc8ce7165fbdbdc7880"
