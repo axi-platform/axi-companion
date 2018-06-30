@@ -1,6 +1,7 @@
 import {action, observable} from 'mobx'
 
 import noti from '../utils/noti'
+import app from '../utils/feathers'
 
 const tabs = ['locator', 'document', 'queue']
 
@@ -77,6 +78,24 @@ class PrintStore {
     }
 
     this.setTab(tabs[currentTab + 1])
+  }
+
+  @action
+  setFileID = (file, id) => {
+    const index = store.files.findIndex(f => f === file)
+
+    if (store.files[index]) {
+      store.files[index].id = id
+    }
+  }
+
+  @action
+  createQueue = async () => {
+    const deviceId = this.store.id
+    const files = this.files.map(file => file.id)
+
+    const queue = await app.service('queues').create({deviceId, data: {files}})
+    console.log('Created Queue:', queue)
   }
 }
 

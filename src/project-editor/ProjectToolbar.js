@@ -64,7 +64,13 @@ const MobileTab = styled.div`
   }
 `
 
-const tabs = ['overview', 'services', 'devices']
+const tabLabels = {
+  overview: 'ภาพรวม',
+  services: 'บริการ',
+  devices: 'อุปกรณ์',
+}
+
+const tabs = Object.keys(tabLabels)
 
 const ProjectToolbar = ({data}) => (
   <Fragment>
@@ -82,7 +88,12 @@ const ProjectToolbar = ({data}) => (
       right={
         <Right>
           <Desktop>
-            <Tabs tabs={tabs} tab={store.tab} go={store.setTab} />
+            <Tabs
+              tabs={tabs}
+              labels={tabLabels}
+              tab={store.tab}
+              go={store.setTab}
+            />
           </Desktop>
           <Separator />
           <IconLink to="/dashboard" icon="notifications" />
@@ -94,6 +105,7 @@ const ProjectToolbar = ({data}) => (
       <Tabs
         tabs={tabs}
         tab={store.tab}
+        labels={tabLabels}
         color="hsl(264, 46%, 41%)"
         go={store.setTab}
       />

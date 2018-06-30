@@ -115,6 +115,8 @@ export default class FileUploader extends Component {
           queue: 'upload',
           killer: true,
         })
+
+        store.setFileID(file, res.id)
       } catch (err) {
         console.error('Upload Error', err)
 

@@ -16,7 +16,6 @@ const Tab = styled.div`
   justify-content: center;
   position: relative;
 
-  width: 100%;
   padding: 0.76em 1.5em;
   background: transparent;
 
@@ -38,14 +37,14 @@ const TabIndicator = styled.div`
   transform: translateX(${props => props.index * 100}%);
 `
 
-const Tabs = ({tab, go, tabs, color}) => {
+const Tabs = ({tab, go, tabs, labels, color}) => {
   const index = Math.max(tabs.indexOf(tab), 0)
 
   return (
     <TabWrapper>
       {tabs.map(item => (
         <Tab key={item} onClick={() => go(item)}>
-          {item}
+          {labels[item]}
           <Ink opacity={0.1} />
         </Tab>
       ))}

@@ -138,6 +138,8 @@ const Nearby = ({data = []}) => {
     .map(withDistance({latitude, longitude}))
     .sort(sortByDistance)
 
+  console.log('Shops are', shops)
+
   return (
     <Container>
       <Grid>
@@ -148,7 +150,10 @@ const Nearby = ({data = []}) => {
             selected={store.store.name === shop.name}>
             <Title>{shop.displayName}</Title>
             <div>
-              ระยะทาง {getDistanceLabel(shop.distance)} เหลือ {shop.queue} คิว
+              <span>ระยะทาง {getDistanceLabel(shop.distance)}</span>&nbsp;
+              <span>
+                เหลือ <b>{shop.queues.length}</b> คิว
+              </span>
             </div>
             <Ink opacity={0.1} />
           </Card>

@@ -11,19 +11,21 @@ import Icon from '../ui/Icon'
 
 import colorize from '../utils/color-hash'
 
-export const ServiceCard = data => (
-  <Card color={data.color || colorize(data.name)} to={data.to}>
-    <Content>
-      <Ink />
-      {data.displayName}
-      <Small>{data.description}</Small>
-      {data.icon && (
-        <img src={require(`../../assets/${data.icon}.png`)} alt="" />
-      )}
-    </Content>
-    <Meta>{data.name}</Meta>
-  </Card>
-)
+export const ServiceCard = data => {
+  const icon = `/${data.icon}.png`
+
+  return (
+    <Card color={data.color || colorize(data.name)} to={data.to}>
+      <Content>
+        <Ink />
+        {data.displayName}
+        <Small>{data.description}</Small>
+        {data.icon && <img src={icon} alt="" />}
+      </Content>
+      <Meta>{data.name}</Meta>
+    </Card>
+  )
+}
 
 export const Add = ({onClick}) => (
   <Adder color="linear-gradient(45deg, #d4145a, #fbb03b)" onClick={onClick}>
