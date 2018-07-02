@@ -15,7 +15,23 @@ import store from '../printat/store'
 
 Noty.setMaxVisible(1, 'upload')
 
-const maxSize = 80000000
+// Maximum File Size is 60 MB
+const maxSize = 60000000
+
+// Accepted MIME types
+const accept = [
+  'text/plain',
+  'image/jpeg',
+  'image/png',
+  'image/svg+xml',
+  'application/pdf',
+  'application/msword',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  'application/vnd.ms-excel',
+  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  'application/vnd.ms-powerpoint',
+  'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+]
 
 const Meta = styled.div`
   font-size: 16px;
@@ -75,7 +91,10 @@ export default class FileUploader extends Component {
   }
 
   onRejected = files => {
-    console.log(files)
+    console.log('File Rejected:', files)
+    noti.error('พบไฟล์ที่ไม่รองรับ')
+
+    this.isDragging = false
   }
 
   onDragEnter = event => {
@@ -152,6 +171,7 @@ export default class FileUploader extends Component {
       onDragLeave: this.onDragLeave,
       activeClassName: draggingStyle,
       maxSize,
+      accept,
     }
 
     const color = this.isDragging ? '45, 45, 48' : '255, 87, 34'

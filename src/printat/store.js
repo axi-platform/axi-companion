@@ -1,9 +1,12 @@
 import {action, observable} from 'mobx'
+import swal from 'sweetalert'
 
 import noti from '../utils/noti'
 import app from '../utils/feathers'
 
 const tabs = ['locator', 'document', 'queue']
+
+const queues = app.service('queues')
 
 class PrintStore {
   // The current position of the user
@@ -96,8 +99,6 @@ class PrintStore {
 
   @action
   createQueue = async () => {
-    const queues = app.service('queues')
-
     const deviceId = this.store.id
     const files = this.files.map(file => file.id)
 
@@ -119,6 +120,24 @@ class PrintStore {
     this.files = []
     this.selectedFile = {}
     this.queueId = null
+  }
+
+  @action
+  cancel = async () => {
+    const id = this.queueId
+
+    const confirm = await swal({
+      title: 'ต้องการยกเลิกคิวนี้จริงๆ ใช่มั้ย? 😱',
+      text: 'คุณจะยกเลิกคิวนี้แน่แล้วใช่มั้ย ถ้ายกเลิกแล้วก็ยกเลิกเลยนะ!',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    })
+
+    if (confirm) {
+      const queue = await queues.patch(id, {status: 'canceled'})
+      console.info('Canceled Queue:', queue)
+    }
   }
 }
 

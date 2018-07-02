@@ -9,7 +9,7 @@ import noti from '../utils/noti'
 const statuses = {
   idle: 'รอการประมวลผล 🙂',
   processing: 'กำลังดำเนินการอยู่ กรุณารอสักครู่ 😇',
-  canceled: 'ถูกยกเลิก 😐',
+  canceled: 'คิวถูกยกเลิก 😐',
   failed: 'เกิดความผิดพลาด 😭',
   completed: 'ปรินท์เสร็จเรียบร้อย รับเอกสารได้เลย 😎',
 }
@@ -42,13 +42,16 @@ const DeviceInfo = device => {
 
 export default class QueueCard extends Component {
   componentDidUpdate(prev) {
-    const {status} = this.props
+    const {id, status} = this.props
 
     if (status !== prev.status) {
       if (status === 'processing') noti.alert(statuses.processing)
       if (status === 'completed') noti.success(statuses.completed)
       if (status === 'failed') noti.error(statuses.failed)
-      if (status === 'canceled') noti.warn(statuses.canceled)
+
+      if (status === 'canceled') {
+        noti.warn(`ยกเลิกคิวที่ ${id} เรียบร้อยแล้ว 😐`)
+      }
     }
   }
 

@@ -47,9 +47,9 @@ const Title = styled.div`
 `
 
 function truncate(text) {
-  if (text.length < 40) return text
+  if (text.length < 35) return text
 
-  return text.slice(0, 40) + '...'
+  return text.slice(0, 35) + '...'
 }
 
 const File = ({i, data}) => {
