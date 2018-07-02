@@ -10,6 +10,10 @@ export default class Query extends Component {
   @observable store = {data: [], loading: true, error: null}
 
   async componentDidMount() {
+    await this.setup()
+  }
+
+  setup = async () => {
     let {service, query, sifter, id} = this.props
     const options = {}
 
@@ -33,6 +37,15 @@ export default class Query extends Component {
 
     this.sync = await sync(service, options)
     this.store.loading = false
+  }
+
+  async componentDidUpdate(prev) {
+    if (this.props.id !== prev.id || this.props.query !== prev.query) {
+      console.log('Query or ID Updated. Re-syncing...', this.props)
+
+      await this.sync.disconnect()
+      await this.setup()
+    }
   }
 
   componentWillUnmount() {

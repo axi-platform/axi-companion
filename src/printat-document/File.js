@@ -63,7 +63,9 @@ const File = ({i, data}) => {
     <Card onClick={() => store.selectFile(data)} selected={selected}>
       <CircleIcon icon={icon} color={color} />
       <div>
-        <Title>{truncate(data.name)}</Title>
+        <Title>
+          {i + 1}: {truncate(data.name)}
+        </Title>
 
         <Meta>
           {size} - {format} - {date}

@@ -5,6 +5,8 @@ import styled, {css} from 'react-emotion'
 const ImageContainer = styled.div`
   padding: 0.5em;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 25px;
+
+  margin-bottom: 1em;
 `
 
 const IFrame = styled.iframe`
@@ -13,6 +15,8 @@ const IFrame = styled.iframe`
 
   border: none;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 25px;
+
+  margin-bottom: 1em;
 `
 
 const imageStyle = css`

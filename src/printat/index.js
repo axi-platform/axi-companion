@@ -4,7 +4,7 @@ import Nav from './Nav'
 import Tab from './Tab'
 import BottomNav from './BottomNav'
 
-import Locator from '../printat-locator'
+import Locator from '../axi-locator'
 import Document from '../printat-document'
 import Queue from '../printat-queue'
 

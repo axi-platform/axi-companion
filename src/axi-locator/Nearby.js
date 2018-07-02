@@ -138,8 +138,6 @@ const Nearby = ({data = []}) => {
     .map(withDistance({latitude, longitude}))
     .sort(sortByDistance)
 
-  console.log('Shops are', shops)
-
   return (
     <Container>
       <Grid>

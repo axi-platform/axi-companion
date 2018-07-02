@@ -68,8 +68,7 @@ export default class FileUploader extends Component {
     this.isDragging = false
 
     files.forEach(file => {
-      store.addFile(file)
-      store.selectFile(file)
+      console.log('Adding File:', file.name)
 
       this.upload(file)
     })
@@ -116,7 +115,10 @@ export default class FileUploader extends Component {
           killer: true,
         })
 
-        store.setFileID(file, res.id)
+        file.id = res.id
+
+        store.addFile(file)
+        store.selectFile(file)
       } catch (err) {
         console.error('Upload Error', err)
 

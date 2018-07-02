@@ -11,7 +11,7 @@ import store from '../printat/store'
 import noti from '../utils/noti'
 
 @observer
-export default class StoreLocator extends Component {
+export default class Locator extends Component {
   componentDidMount() {
     this.relocate()
 
@@ -36,7 +36,7 @@ export default class StoreLocator extends Component {
 
   render() {
     return (
-      <Query service="devices">
+      <Query service="devices" query={{serviceId: 1}}>
         {(data, loading, error) => {
           if (loading) return <div>Loading...</div>
           if (error) return <div>Error: {error.message}</div>

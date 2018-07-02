@@ -24,9 +24,21 @@ class PrintStore {
   // The selected file to be previewed
   @observable selectedFile = {}
 
+  // Current Queue ID
+  @observable queueId = null
+
   @action addFile = file => this.files.push(file)
 
   @action selectFile = file => (this.selectedFile = file)
+
+  @action
+  removeFile = () => {
+    const {name} = this.selectedFile
+
+    store.files = store.files.filter(file => file.name !== name)
+
+    this.selectedFile = {}
+  }
 
   @action
   setPosition = position => {
@@ -68,7 +80,7 @@ class PrintStore {
   @action setTab = tab => (this.tab = tab)
 
   @action
-  proceed = () => {
+  proceed = async () => {
     const currentTab = tabs.indexOf(this.tab)
 
     if (!this.store.name) {
@@ -80,22 +92,33 @@ class PrintStore {
     this.setTab(tabs[currentTab + 1])
   }
 
-  @action
-  setFileID = (file, id) => {
-    const index = store.files.findIndex(f => f === file)
+  @action setQueue = id => (store.queueId = id)
 
-    if (store.files[index]) {
-      store.files[index].id = id
+  @action
+  createQueue = async () => {
+    const queues = app.service('queues')
+
+    const deviceId = this.store.id
+    const files = this.files.map(file => file.id)
+
+    try {
+      const {id} = await queues.create({deviceId, data: {files}})
+      store.setQueue(id)
+
+      // prettier-ignore
+      noti.success(`สร้างคิวเรียบร้อยแล้ว เอกสารของคุณอยู่คิวที่ ${id} กรุณารอสักครู่~ 😎`)
+    } catch (err) {
+      console.error(err)
     }
   }
 
   @action
-  createQueue = async () => {
-    const deviceId = this.store.id
-    const files = this.files.map(file => file.id)
-
-    const queue = await app.service('queues').create({deviceId, data: {files}})
-    console.log('Created Queue:', queue)
+  startOver = () => {
+    this.tab = 'locator'
+    this.store = {}
+    this.files = []
+    this.selectedFile = {}
+    this.queueId = null
   }
 }
 
